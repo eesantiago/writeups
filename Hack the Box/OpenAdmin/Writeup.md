@@ -21,4 +21,18 @@ As expexted we get the apache default page.  Let's enumerate futher using gobust
 ```
 gobuster -w /usr/share/wordlists/dirb/common.txt -t 30 -k -x html,php,txt,asp,aspx -u http://10.10.10.171
 ```
+![gobuster](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/OpenAdmin/Images/gobuster.png)
+
+Let's look at the music and login pages:
+
+Music:
+
+![music](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/OpenAdmin/Images/music.png)
+
+Login page redirected:
+
+![ona](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/OpenAdmin/Images/ona.png)
+
+
+
 
