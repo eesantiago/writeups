@@ -37,6 +37,7 @@ Looks like the web appliaction that is running is out of date.  Now click the "O
 
 ![about](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/OpenAdmin/Images/ona_about.png)
 
+
 Lets see if there are any vulnerabilities for OpenNetAdmin:
 
 ![searchsploit]()
