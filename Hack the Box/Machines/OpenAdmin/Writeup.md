@@ -40,7 +40,7 @@ Looks like the web appliaction that is running is out of date.  Now click the "O
 
 Lets see if there are any vulnerabilities for OpenNetAdmin:
 
-![searchsploit]()
+![searchsploit](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/searchsploit.png)
 
 ## Initial Foothold
 
