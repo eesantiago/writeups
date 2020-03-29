@@ -29,21 +29,24 @@ Let's look at the music page:
 Music:
 
 ![music](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/music.png)
+\
 
 I clicked 'login' and it sent me to this page http://10.10.10.171/ona/:
 
 ![ona](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/ona.png)
+\
 
 Looks like the web appliaction that is running is out of date.  Now click the "ONA" and "About":
 
 ![about](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/ona_about.png)
-
+\
 
 Lets see if there are any vulnerabilities for OpenNetAdmin (ONA):
 
 ![searchsploit](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/searchsploit.png)
 
 ## Initial Foothold
+\
 
 After looking at the proof of concept found in exploitdb, we just need to edit the URL to point to the ONA web application:
 
@@ -56,6 +59,7 @@ Execute the bash script with the changes and we get a limited shell on the machi
 We are dropped in the /opt/www/ona directory, which is the root for ONA
 
 ## Pivoting to User 1
+\
 
 We cannot spawn a tty shell from here, so lets see if we can upload and execute a php-reverse-shell using the following commands:
 
@@ -85,6 +89,7 @@ Lets try to ssh with the credentials jimmy:n1nj4W4rri0R!:
 ![jimmy_shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/jimmyshell.png)
 
 ## Pivoting to User 2
+\
 
 Success!  But there is no user.txt file in jimmy's home directory:
 
@@ -127,10 +132,12 @@ The password for id_rsa is bloodninjas, which goes along with the hint of "ninja
 ![joanna_shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/joannashell.png)
 
 ## User File 
+\
 
 ![userfile](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/userfile.png)
 
 ## Privilege Escalation
+\
 
 Start by checking if joanna is allowed to run any commands with sudo:
 
