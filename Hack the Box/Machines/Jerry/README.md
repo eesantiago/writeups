@@ -4,12 +4,12 @@
 
 Start with an nmap scan:
 
-\
+
 ```
 nmap -A 10.10.10.95
 ```
 
-\
+
 ```
 Starting Nmap 7.25BETA2 ( https://nmap.org ) at 2018-07-26 15:18 EDT
 Nmap scan report for 10.10.10.95
