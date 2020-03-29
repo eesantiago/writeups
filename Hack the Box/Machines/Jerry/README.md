@@ -2,7 +2,6 @@
 
 ## Enumeration
 
-\
 Start with an nmap scan:
 
 \
