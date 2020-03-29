@@ -6,6 +6,7 @@ Start off with a detailed nmap scan:
 
 \
 ![nmap](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/nmap.png)
+
 \
 Next lets navigate to the webserver in our browser to verify that this in fact the apache default page:
 ```
