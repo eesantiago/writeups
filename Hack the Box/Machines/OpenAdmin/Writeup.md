@@ -6,6 +6,7 @@
 
 ## Enumeration
 \
+\
 Start off with a detailed nmap scan:
 
 ![nmap](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/nmap.png)
