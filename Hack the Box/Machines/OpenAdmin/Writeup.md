@@ -47,7 +47,6 @@ Lets see if there are any vulnerabilities for OpenNetAdmin (ONA):
 
 ## Initial Foothold
 \
-
 After looking at the proof of concept found in exploitdb, we just need to edit the URL to point to the ONA web application:
 
 ![poc](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/poc.png)
