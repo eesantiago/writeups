@@ -24,22 +24,26 @@ gobuster -w /usr/share/wordlists/dirb/common.txt -t 30 -k -x html,php,txt,asp,as
 Let's look at the music page:
 
 \
-Music:
-
 ![music](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/music.png)
+
 \
 I clicked 'login' and it sent me to this page http://10.10.10.171/ona/:
 
+\
 ![ona](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/ona.png)
+
 \
 Looks like the web appliaction that is running is out of date.  Now click the "ONA" and "About":
 
-![about](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/ona_about.png)
 \
+![about](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/ona_about.png)
 
+\
 Lets see if there are any vulnerabilities for OpenNetAdmin (ONA):
 
+\
 ![searchsploit](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/OpenAdmin/Images/searchsploit.png)
+
 \
 ## Initial Foothold
 \
