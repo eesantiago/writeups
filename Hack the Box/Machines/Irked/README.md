@@ -2,7 +2,7 @@
   <img src="https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/irked.png" alt="Irked"/>
 </p>
 
-\
+
 ## Enumeration
 
 \
