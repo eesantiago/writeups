@@ -6,7 +6,7 @@
 ## Enumeration
 
 \
-Start with a detailed nmap scan
+Start with a detailed nmap scan:
 
 ```
 nmap -vv -Pn --disable-arp-ping -sS -A -sC -p- -T 3 -script-args=unsafe=1 -n 10.10.10.117
@@ -75,7 +75,7 @@ OS and Service detection performed. Please report any incorrect results at https
 ## Exploitation 
 
 \
-I first looked at UnrealIRCd in exploitdb:
+I first looked at the uncommon ports hosting UnrealIRCd.  Let's check in exploitdb:
 
 ![searchsploit](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/searchsploit.JPG)
 
@@ -85,22 +85,22 @@ Lets test out the [metasploit exploit](https://www.rapid7.com/db/modules/exploit
 msf5 > use exploit/unix/irc/unreal_ircd_3281_backdoor
 ```
 
-![msf]()
+![msf](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/msf.png)
 
 \
 We got an meterpreter shell!  Type shell  so that you get an interactive shell then /bin/bash to get a bash shell:
 
-![shell]()
+![shell](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/shell.png)
 
 \
 Now looking in the home directories, we cannot open the file user.txt because we are not the user djmardov:
 
-![user]()
+![user](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/user.txt.png)
 
 \
 There is also a backup file in the user;s home directory:
 
-![backup]()
+![backup](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/backup.png)
 
 \
 Let's keep this passwordin mind for later.  Next I transferred LinEnum to the target machine using netcat, sent the output to a text file, then sent it back to my attacking machine for analysis:
@@ -121,7 +121,7 @@ nc -nlvp 4444 > LinEnum.txt
 
 Let's look at some of the results:
 
-![linenum]()
+![linenum](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/linenum.png)
 
 \
 From this list with the SUID bit set, viewuser is not a binary that normally has the SUID bit set.  Use strings on the binary to see what it does:
@@ -129,7 +129,7 @@ From this list with the SUID bit set, viewuser is not a binary that normally has
 strings /usr/bin/viewuser
 ```
 
-![viewuser]()
+![viewuser](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/viewuser.png)
 
 \
 This shows a file in /tmp called listusers that it executes. The file does not exist in tmp, so lets make one so that it reads the users.txt and root .txt files :
@@ -145,5 +145,5 @@ ircd@irked:/tmp$ echo "cat /root/root.txt" >> listusers
 \
 Now execute viewuser and we get the user.txt and root.txt files:
 
-![files]()
+![files](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/files.png)
 
