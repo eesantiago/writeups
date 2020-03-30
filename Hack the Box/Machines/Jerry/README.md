@@ -2,6 +2,7 @@
 
 ## Enumeration
 
+\
 Start with an nmap scan:
 
 ```
@@ -37,7 +38,7 @@ Nmap done: 1 IP address (1 host up) scanned in 28.45 seconds
 
 ## Exploitation
 
-
+\
 Looks like the only port open is 8080, which is running Apache Tomcat 1.1.  Some research pointed me to a [metasploit module](https://www.rapid7.com/db/modules/auxiliary/scanner/http/tomcat_mgr_login) for logging into Apache Tomcat using default credentials.  Using this I got the credentials tomcat:s3cret.  Now we can use the [tomcat manager authenticated upload module](https://www.hackingarticles.in/multiple-ways-to-exploit-tomcat-manager/). This module can be used to execute a payload on Apache Tomcat servers that have an exposed “manager” application. The payload is uploaded as a WAR archive containing a JSP application using a POST request against the /manager/html/upload component:
 
 ```
@@ -72,7 +73,7 @@ meterpreter > download 2 for the price of 1.txt
 
 ## User and Root Files
 
-
+\
 I then pulled it back to my local machine to view both flags:
 ```
 root@kali:~# cat 2\ for\ the\ price\ of\ 1.txt 
