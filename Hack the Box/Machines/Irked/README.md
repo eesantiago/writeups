@@ -2,6 +2,7 @@
   <img src="https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/irked.png" alt="Irked"/>
 </p>
 
+\
 ## Enumeration
 
 \
@@ -76,7 +77,7 @@ OS and Service detection performed. Please report any incorrect results at https
 \
 I first looked at UnrealIRCd in exploitdb:
 
-![searchsploit]()
+![searchsploit](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Irked/Screenshots/searchsploit.JPG)
 
 \
 Lets test out the [metasploit exploit](https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor), which exploits a backdoor in Unreal IRCD 3.2.8.1:
