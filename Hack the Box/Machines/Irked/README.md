@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="https://github.com/waldyr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
+</p>
 
 ## Enumeration
 
+\
 Start with a detailed nmap scan
 
 ```
@@ -74,6 +78,7 @@ I first looked at UnrealIRCd in exploitdb:
 
 ![searchsploit]()
 
+\
 Lets test out the [metasploit exploit](https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor), which exploits a backdoor in Unreal IRCD 3.2.8.1:
 ```
 msf5 > use exploit/unix/irc/unreal_ircd_3281_backdoor
@@ -81,18 +86,22 @@ msf5 > use exploit/unix/irc/unreal_ircd_3281_backdoor
 
 ![msf]()
 
+\
 We got an meterpreter shell!  Type shell  so that you get an interactive shell then /bin/bash to get a bash shell:
 
 ![shell]()
 
+\
 Now looking in the home directories, we cannot open the file user.txt because we are not the user djmardov:
 
 ![user]()
 
+\
 There is also a backup file in the user;s home directory:
 
 ![backup]()
 
+\
 Let's keep this passwordin mind for later.  Next I transferred LinEnum to the target machine using netcat, sent the output to a text file, then sent it back to my attacking machine for analysis:
 
 ```
@@ -113,6 +122,7 @@ Let's look at some of the results:
 
 ![linenum]()
 
+\
 From this list with the SUID bit set, viewuser is not a binary that normally has the SUID bit set.  Use strings on the binary to see what it does:
 ```
 strings /usr/bin/viewuser
@@ -120,6 +130,7 @@ strings /usr/bin/viewuser
 
 ![viewuser]()
 
+\
 This shows a file in /tmp called listusers that it executes. The file does not exist in tmp, so lets make one so that it reads the users.txt and root .txt files :
 
 ```
