@@ -69,11 +69,12 @@ OS and Service detection performed. Please report any incorrect results at https
 
 ## Exploitation 
 
+\
 I first looked at UnrealIRCd in exploitdb:
 
 ![searchsploit]()
 
-Lets test out the [metasploit exploit](https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor0, which exploits a backdoor in Unreal IRCD 3.2.8.1:
+Lets test out the [metasploit exploit](https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor), which exploits a backdoor in Unreal IRCD 3.2.8.1:
 ```
 msf5 > use exploit/unix/irc/unreal_ircd_3281_backdoor
 ```
