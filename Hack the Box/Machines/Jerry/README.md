@@ -1,4 +1,6 @@
-![jerry](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Jerry/jerry.png)
+<p align="center">
+  <img src="https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Jerry/jerry.png" alt="Jerry"/>
+</p>
 
 ## Enumeration
 
