@@ -7,6 +7,7 @@
 Start with a detailed nmap scan:
 
 ```
+<div class="text-white bg-blue mb-2">
 nmap -sC -sV -Pn -p- 10.10.10.181
 
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-03-14 16:57 EDT
@@ -23,6 +24,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/$
 Nmap done: 1 IP address (1 host up) scanned in 74.85 seconds
+</div>
 ```
 
 Lets check out the webserver in a browser:
