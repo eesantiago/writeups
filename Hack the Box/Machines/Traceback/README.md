@@ -1,6 +1,6 @@
 ## WORK IN PROGRESS
 
-[traceback]()
+![traceback](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/traceback.jpg)
 
 ## Enumeration 
 
@@ -29,7 +29,7 @@ Lets check out the webserver in a browser:
 ```
 http://10.10.10.181/
 ```
-[webserver]()
+![webserver](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/webserver.JPG)
 
 The webserver landing page states there is a backdoor somewhere.  Let's enumerate further with gobuster:
 
@@ -103,7 +103,7 @@ Again nothing very interesting.  Lets dig into the landing page.  It looks like 
 ```
 https://github.com/Xh4H/Web-Shells
 ```
-(webshells)[]
+![webshells](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/webshells.JPG)
 
 I then combined these into a wordlist to be used with gobuster:
 ```
@@ -153,11 +153,11 @@ Looks like there is a page using one of the web shells.  Lets naviagte to it in 
 ```
 http://10.10.10.181/smevk.php
 ```
-[smevk]()
+![smevk](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/smevk.JPG)
 
 I tried the credentials admin:admin and was able to login:
 
-[portal]()
+![portal](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/portal.JPG)
 
 Looks like we can upload a reverse php shell to this location.  Lets use the 
 
