@@ -161,6 +161,8 @@ I tried the credentials admin:admin and was able to login:
 
 ![portal](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/portal.JPG)
 
+## Exploitation
+
 Looks like we can upload a reverse php shell to this location.  
 
 
