@@ -26,14 +26,12 @@ Nmap done: 1 IP address (1 host up) scanned in 74.85 seconds
 </div>
 ```
 \
-
 Lets check out the webserver in a browser:
 ```
 http://10.10.10.181/
 ```
 ![webserver](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/webserver.JPG)
 \
-
 The webserver landing page states there is a backdoor somewhere.  Let's enumerate further with gobuster:
 ```
 gobuster -w /usr/share/wordlists/dirb/common.txt -t 30 -x html,asp,php -u http://10.10.10.181:80 -o gobuster_10.10.10.181_80.txt
@@ -70,7 +68,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 2020/03/14 17:00:54 Finished
 =====================================================
 ```
-
+\
 Nothing Interesting here.  Lets try nikto:
 
 ```
@@ -99,7 +97,7 @@ nikto -h 10.10.10.181:80
 ---------------------------------------------------------------------------
 + 1 host(s) tested
 ```
-
+\
 Again nothing very interesting.  Lets dig into the landing page.  It looks like the page was created by someone with the handle Xh4H.  I did some googling and found the users Github page with a list of webshells he likes to use:
 
 ```
