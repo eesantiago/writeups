@@ -2,9 +2,7 @@
 
 ![traceback](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/traceback.jpg)
 
-## Enumeration 
-
-
+## Enumeration \
 Start with a detailed nmap scan:
 
 
