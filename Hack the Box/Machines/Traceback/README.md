@@ -23,7 +23,6 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/$
 Nmap done: 1 IP address (1 host up) scanned in 74.85 seconds
-</div>
 ```
 \
 Lets check out the webserver in a browser:
@@ -99,7 +98,7 @@ nikto -h 10.10.10.181:80
 ```
 \
 Again nothing very interesting.  Lets dig into the landing page.  It looks like the page was created by someone with the handle Xh4H.  I did some googling and found the users Github page with a list of webshells he likes to use:
-
+\
 ```
 https://github.com/Xh4H/Web-Shells
 ```
