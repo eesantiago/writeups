@@ -5,7 +5,6 @@
 ## Enumeration
 \
 Start with a detailed nmap scan:
-\
 
 ```
 nmap -sC -sV -Pn -p- 10.10.10.181
@@ -27,6 +26,7 @@ Nmap done: 1 IP address (1 host up) scanned in 74.85 seconds
 </div>
 ```
 \
+
 Lets check out the webserver in a browser:
 ```
 http://10.10.10.181/
