@@ -70,7 +70,8 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 2020/03/14 17:00:54 Finished
 =====================================================
 ```
-\
+<br />  
+
 Nothing Interesting here.  Lets try nikto:
 
 ```
@@ -99,12 +100,16 @@ nikto -h 10.10.10.181:80
 ---------------------------------------------------------------------------
 + 1 host(s) tested
 ```
-\
+<br />  
+
 Again nothing very interesting.  Lets dig into the landing page.  It looks like the page was created by someone with the handle Xh4H.  I did some googling and found the users Github page with a list of webshells he likes to use:
-\
+<br />  
+
 ```
 https://github.com/Xh4H/Web-Shells
 ```
+<br />  
+
 ![webshells](https://github.com/EESantiago/Writeups/blob/master/Hack%20the%20Box/Machines/Traceback/Screenshots/webshells.JPG)
 
 I then combined these into a wordlist to be used with gobuster:
