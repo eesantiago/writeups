@@ -1,2 +1,2 @@
 # Writeups
-Writeups from CTFs and Pentest engagements
+Writeups from Capture the Flag events
