@@ -10,7 +10,7 @@ qemu-system-i386 floppy.img
 ```
 <br />  
 
-[riddle]!()
+[riddle]!(https://github.com/EESantiago/Writeups/blob/master/CyberStakes_2020/boot_riddle/screenshots/riddle.png)
 <br />  
 
 So the riddle points to a location in memory where the flag.  We can do this using [QEMU monitor](http://people.redhat.com/pbonzini/qemu-test-doc/_build/html/topics/pcsys_005fmonitor.html) to save create a memory dump starting at the address in the riddle, 0x7DC0: 
