@@ -3,7 +3,7 @@
 ### Challenge: This floppy disk image boots, but instead of a flag we see some silly riddle...
 <br />  
 
-Similar to the challenge Boot Camp, up the floppy image 
+Similar to the challenge Boot Camp, boot up the floppy image with the QEMU emulator: 
 
 ```
 qemu-system-i386 floppy.img
