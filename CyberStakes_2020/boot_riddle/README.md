@@ -14,7 +14,7 @@ qemu-system-i386 floppy.img
 <br />  
 <br />  
 
-So the riddle points to a location in memory where the flag.  We can do this using [QEMU monitor](http://people.redhat.com/pbonzini/qemu-test-doc/_build/html/topics/pcsys_005fmonitor.html) to save create a memory dump starting at the address in the riddle, 0x7DC0: 
+So the riddle points to a location in memory where the flagis.  We can access this location in memory using the [QEMU monitor](http://people.redhat.com/pbonzini/qemu-test-doc/_build/html/topics/pcsys_005fmonitor.html) to save a memory dump starting at the address in the riddle, 0x7DC0: 
 ```
 memsave 0x7DC0 4096 outfile.mem
 ```
