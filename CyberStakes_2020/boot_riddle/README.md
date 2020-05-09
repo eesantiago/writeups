@@ -1,5 +1,8 @@
 # Boot Riddle - 100 points
 <br />  
+###Challenge: This floppy disk image boots, but instead of a flag we see some silly riddle...
+
+
 
 Similar to the challenge Boot Camp, up the floppy image 
 
