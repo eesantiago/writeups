@@ -1,5 +1,4 @@
 # Boot Riddle - 100 points
-<br />  
 
 ### Challenge: This floppy disk image boots, but instead of a flag we see some silly riddle...
 <br />  
@@ -19,7 +18,7 @@ So the riddle points to a location in memory where the flag.  We can do this usi
 memsave 0x7DC0 4096 outfile.mem
 ```
 <br />  
-Open the file and we get the flag:
+Now open the file and we get the flag:
 <br />  
 
-### ACI{REALmode}
+## ACI{REALmode}
