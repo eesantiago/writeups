@@ -1,6 +1,8 @@
-# Boot Master - Forensics - 75 points
+# Boot Master
 
-### Challenge: We found another floppy disk image, but we can't get this one to boot like we did the last one. The disk had been sitting around for a while so we're wondering if some of the data was corrupted. Any ideas?
+* **Category**: Forensics
+* **Points**: 75
+* **Challenge**: We found another floppy disk image, but we can't get this one to boot like we did the last one. The disk had been sitting around for a while so we're wondering if some of the data was corrupted. Any ideas?
 <br />
 
 
