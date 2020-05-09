@@ -1,0 +1,13 @@
+Package: bash
+Version: 4.4.18-2
+Depends: libc, libncurses, libreadline
+Source: feeds/packages/utils/bash
+License: GPL-3.0+
+LicenseFiles: COPYING
+Section: utils
+Maintainer: Marcel Denia <naoir@gmx.net>
+Architecture: mipsel_24kc
+Installed-Size: 257212
+Description:  Bash is an sh-compatible command language interpreter that executes
+ commands read from the standard input or from a file. Bash also
+ incorporates useful features from the Korn and C shells (ksh and csh).

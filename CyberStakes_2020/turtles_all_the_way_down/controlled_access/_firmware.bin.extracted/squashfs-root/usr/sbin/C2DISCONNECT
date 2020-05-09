@@ -1,0 +1,9 @@
+#!/bin/bash
+killall -9 cc-client &>/dev/null
+if [[ $(pgrep cc-client) ]]; then
+  echo "Error, Device Still Connected to C2"
+  exit 1
+else
+  echo "Device Disconnected From C2"
+  exit 0
+fi

@@ -1,0 +1,9 @@
+Package: cc-client
+Version: master-1
+Depends: libc, libpthread, libstdcpp, libcurl, libopenssl, libsqlite3, protobuf-lite
+Source: package/utils/cc-client
+License: Hak5
+Section: utils
+Architecture: mipsel_24kc
+Installed-Size: 245240
+Description:  Hak5 Cloud C2 Client

@@ -1,0 +1,2 @@
+/etc/modules.d/ipt-offload
+/lib/modules/4.14.109/xt_FLOWOFFLOAD.ko
