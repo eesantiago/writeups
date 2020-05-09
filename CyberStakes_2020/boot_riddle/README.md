@@ -3,9 +3,9 @@
 
 Similar to the challenge Boot Camp, up the floppy image 
 
-'''
+```
 qemu-system-i386 floppy.img
-'''
+```
 <br />  
 
 [riddle]()
