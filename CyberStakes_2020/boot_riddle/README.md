@@ -2,8 +2,7 @@
 <br />  
 
 ### Challenge: This floppy disk image boots, but instead of a flag we see some silly riddle...
-
-
+<br />  
 
 Similar to the challenge Boot Camp, up the floppy image 
 
@@ -12,8 +11,15 @@ qemu-system-i386 floppy.img
 ```
 <br />  
 
-[riddle]()
+[riddle]!()
 <br />  
 
-So the riddle points to a location in memory where the flag.  We can do this using [QEMU monitor](http://people.redhat.com/pbonzini/qemu-test-doc/_build/html/topics/pcsys_005fmonitor.html) to save create a memory dump starting at the address in the riddle, 0x7DC0:
-'''
+So the riddle points to a location in memory where the flag.  We can do this using [QEMU monitor](http://people.redhat.com/pbonzini/qemu-test-doc/_build/html/topics/pcsys_005fmonitor.html) to save create a memory dump starting at the address in the riddle, 0x7DC0: 
+```
+memsave 0x7DC0 4096 outfile.mem
+```
+<br />  
+Open the file and we get the flag:
+<br />  
+
+### ACI{REALmode}
