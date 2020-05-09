@@ -26,6 +26,10 @@ hexdump -C floppy.img
 <br />
 
 Further analysis of the master boot record (MBR) [magic number (bytes)](http://mbrwizard.com/thembr.php) indicates that the final two bytes of the MBR must be the hex value '55 AA', making it a valid MBR. An invalid magic number indicates a corrupt or missing MBR, therefore these bytes are critical to booting the disk.  I opened the image in bless and changed the '51 aa' to '55 aa':
+```
+bless floppy.img
+```
+
 <br />
 
 ![bless](https://github.com/EESantiago/Writeups/blob/master/CyberStakes_2020/boot_master/screenshots/bless.png)
