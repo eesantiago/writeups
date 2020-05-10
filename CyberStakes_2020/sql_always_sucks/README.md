@@ -6,7 +6,7 @@
 
 <br /> 
 
-**DISCLAIMER:** The challenge has been taken down from the CyberStakes website, so I was unable to redo the challenge and take complete notes.  Some of my command output will have a *...snip...* because I didn't record the full output.  
+### **DISCLAIMER:** The challenge has been taken down from the CyberStakes website, so I was unable to redo the challenge and take complete notes.  Some of my command output will have a *...snip...* because I didn't record the full output.  
 
 <br />
 
@@ -19,13 +19,13 @@ Navigating to the webserver in FireFox, http://challenge.acictf.com:28986/, we c
 
 <br />
 
-
 So we know that the target is using an Sqlite database.  One of the hints states may curl and sqlmap will not work unless we use the proper user-agent string.  Lets test this out with curl:
 ```
 curl http://challenge.acictf.com:28986/
 
 User-Agent Alert! Help! I'm Being Hacked!!! /dead
 ```
+<br /> 
 
 Ok, lets open up burpsuite and use the proxy to intercept a GET request:
 
