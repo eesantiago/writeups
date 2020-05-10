@@ -31,7 +31,7 @@ Ok, lets open up burpsuite and use the proxy to intercept a GET request:
 
 <br />
 
-![burp]()
+![burp](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/sql_always_sucks/burp.png)
 
 <br /> 
 
