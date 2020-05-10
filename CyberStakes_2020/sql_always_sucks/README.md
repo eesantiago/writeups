@@ -14,7 +14,6 @@ Navigating to the webserver in FireFox, http://challenge.acictf.com:28986/, we c
 ```
 <!--Dev is only using Sqlite. Bobby Needs to fix this -->
 <!--Form to retrieve last name from first name. In Dev.-->
-
 ```
 
 <br />
