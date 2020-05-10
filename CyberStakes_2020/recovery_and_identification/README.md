@@ -14,7 +14,7 @@ xz --decompress disk2.img.xz
 
 <br />
 
-First, we set use [losetup](https://unix.stackexchange.com/questions/302766/persistent-use-of-loop-block-device-in-mdadm) to associate the loop devices with our image files with will be used to build to RAID array:
+Use [losetup](https://unix.stackexchange.com/questions/302766/persistent-use-of-loop-block-device-in-mdadm) to associate the loop devices with our image files which will be used to build to RAID array:
 ```
 losetup loop1 disk1.img
 losetup loop2 disk2.img 
@@ -22,7 +22,7 @@ losetup loop2 disk2.img
 
 <br /> 
 
-Now we create a third phony disk that will be used to complete the RAID 5 array"
+Now we create a third phony disk image that will be used to complete the RAID 5 array"
 ```
 truncate -s 1G 3.img
 
@@ -47,11 +47,9 @@ losetup -d /dev/loop3
 
 <br />
 
-Now assemble the RAID useing the `--run' flag which forces mdadm to [assmble the RAID array without all the devices:](https://superuser.com/questions/962395/assemble-3-drive-software-raid5-with-one-disk-missing)
+Now assemble the RAID useing the `--run` flag which forces mdadm to [assmble the RAID array without all the devices:](https://superuser.com/questions/962395/assemble-3-drive-software-raid5-with-one-disk-missing)
 ```
 mdadm --assemble --run /dev/md0 /dev/loop1 /dev/loop2
-
-
 
 mdadm -D /dev/md0
 
@@ -88,7 +86,7 @@ Consistency Policy : resync
 
 <br />
 
-Now mount the share and look throught the files:
+Now mount the share and look through the files:
 ```
 mount /dev/md0 /mnt/recovery/
 
@@ -103,8 +101,8 @@ root@an0nym0us3:/mnt/recovery/images# ls
 0.tar.gz.bz2  2.tar.gz.bz2  4.tar.gz.bz2  6.tar.gz.bz2  8.tar.gz.bz2
 1.tar.gz.bz2  3.tar.gz.bz2  5.tar.gz.bz2  7.tar.gz.bz2  9.tar.gz.bz2
 
-bunzip2 *
-gunzip *
+root@an0nym0us3:/mnt/recovery/images# bunzip2 *
+root@an0nym0us3:/mnt/recovery/images# gunzip *
 
 file *
 
