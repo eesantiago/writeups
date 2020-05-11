@@ -3,6 +3,9 @@
 * **Category:** Miscellaneous
 * **Points:** 150
 * **Challenge:** Given two out of three disk images used in a RAID array, see if you can recover the data: disk1.img.xz disk2.img.xz
+* **Hint #1:** [Creating your own RAID array]() would be a good place to start.
+* **Hint #2:** Try to [use your existing array to assemble a RAID array with the given disk images]().
+* **Hint #3:** The flag will be in one of the recovered files
 
 <br /> 
 
@@ -22,7 +25,7 @@ losetup loop2 disk2.img
 
 <br /> 
 
-Now we create a third phony disk image that will be used to complete the RAID 5 array"
+Create a third phony disk image that will be used to complete the RAID 5 array"
 ```
 truncate -s 1G 3.img
 
@@ -47,7 +50,7 @@ losetup -d /dev/loop3
 
 <br />
 
-Now assemble the RAID useing the `--run` flag which forces mdadm to [assmble the RAID array without all the devices:](https://superuser.com/questions/962395/assemble-3-drive-software-raid5-with-one-disk-missing)
+Reassemble the RAID useing the `--run` flag which forces mdadm to [assmble the RAID array without all the devices:](https://superuser.com/questions/962395/assemble-3-drive-software-raid5-with-one-disk-missing)
 ```
 mdadm --assemble --run /dev/md0 /dev/loop1 /dev/loop2
 
