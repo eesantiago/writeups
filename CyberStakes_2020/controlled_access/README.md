@@ -36,7 +36,7 @@ drwxr-xr-x 16 root root    4096 Nov  5  2019 squashfs-root
 
 <br />
 
-Looks like this device, Shark Jack,  has an embedded Linux filesystem, SquashFS.  Digging into the documentation[https://docs.hak5.org/hc/en-us/articles/360034130934-Directory-Structure], the payload to be executed should be located in /root/payload:
+Looks like this device, Shark Jack,  has an embedded Linux filesystem, SquashFS.  Digging into the [documentation](https://docs.hak5.org/hc/en-us/articles/360034130934-Directory-Structure), the payload to be executed should be located in /root/payload:
 ```
 ls -la squashfs-root/root/payload/
 
@@ -69,7 +69,6 @@ run &
 
 We can see from the contents of the payload that the hacker targeted the internal host rootca.digisigner.local.
 
-<br /> 
 
 ## Flag: ACI{rootca.digisigner.local}
 
