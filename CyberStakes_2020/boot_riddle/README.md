@@ -1,6 +1,11 @@
-# Boot Riddle - 100 points
+# Boot Riddle
 
-### Challenge: This floppy disk image boots, but instead of a flag we see some silly riddle...
+* **Category**: Forensics
+* **Points**: 100
+* **Challenge**: This floppy disk image boots, but instead of a flag we see some silly riddle...
+* **Hint #1**: If only we could inspect the device's memory while it is running...
+* **Hint #2**: QEMU's monitor or Bochs' debugger might be useful to read up on.
+
 <br />  
 
 Similar to the challenge Boot Camp, boot up the floppy image with the QEMU emulator: 
