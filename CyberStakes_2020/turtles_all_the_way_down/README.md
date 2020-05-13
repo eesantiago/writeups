@@ -26,7 +26,7 @@ Now we know that there is an encrypted file containing a pcap of the breach call
 
 <br />
 
-One of hints states that the encrypted zip file was generated with '7z', so lets change *jlngsr* to *jlngsr.7z* and use 7z to unzip the pcap file:
+One of hints states that the encrypted zip file was generated with `7z`, so lets change *jlngsr* to *jlngsr.7z* and use 7z to unzip the pcap file:
 ```
 mv jlngsr jlngsr.7z
 
@@ -75,7 +75,7 @@ After opening up *capture.pcap* in wireshark, we can see there is unencrypted FT
 
 <br />
 
-Looking at the final packets in the pcap, we can see the data containing being transfered from the FTP server to the client:
+We can see the client attempting to download a copy of the file *flag.zip*.  Looking at the final packets in the pcap, we see the data containing being transfered from the FTP server to the client:
 
 <br />
 
