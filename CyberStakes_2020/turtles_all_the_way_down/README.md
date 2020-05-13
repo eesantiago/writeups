@@ -14,7 +14,7 @@ After unzipping challenge.zip, we are given challenge.pcap.  Looking thought the
 
 <br />
 
-![IRC]()
+![IRC](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/screenshots/IRC.JPG)
 
 <br /> 
 
@@ -22,7 +22,7 @@ Now we know that there is an encrypted file containing a pcap of the breach call
 
 <br />
 
-![objects]()
+![objects](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/screenshots/objects.JPG)
 
 <br />
 
@@ -71,7 +71,7 @@ After opening up *capture.pcap* in wireshark, we can see there is unencrypted FT
 
 <br />
 
-![ftp]()
+![ftp](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/screenshots/ftp.JPG)
 
 <br />
 
@@ -79,7 +79,7 @@ Looking at the final packets in the pcap, we can see the data containing being t
 
 <br />
 
-![flag]()
+![flag](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/screenshots/flag.JPG)
 
 <br /> 
 
