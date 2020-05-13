@@ -75,7 +75,7 @@ After opening up *capture.pcap* in wireshark, we can see there is unencrypted FT
 
 <br />
 
-We can see the client attempting to download a copy of the file *flag.zip*.  Looking at the final packets in the pcap, we see the data containing being transfered from the FTP server to the client:
+We can see the client attempting to download a copy of the file *flag.zip*.  Looking at the final packets in the pcap, we see the the FTP server opening binary mode to transfer the data containing the flagfrom the FTP server to the client:
 
 <br />
 
