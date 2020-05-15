@@ -65,7 +65,7 @@ dd if="jammed.jpg" bs=1 skip=85986 of="flag.jpg"
 <br />
 
 flag.jpg:
-![flag]()
+![flag](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/carve_flag.jpg)
 
 <br />
 
