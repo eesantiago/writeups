@@ -35,7 +35,7 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 <br />
 
-Looks like another image has been embedded in our orginal image and begins at offset 0x14FE2.  Now we need to [extract the new image using dd](https://www.geeksforgeeks.org/working-with-magic-numbers-in-linux/).  First, lets look at the offset in hexdump:
+Looks like another image has been embedded in our orginal image and begins at offset 0x14FE2.   We can [extract the new image using dd](https://www.geeksforgeeks.org/working-with-magic-numbers-in-linux/).  First, lets look at the offset in hexdump:
 ```
 hexdump -C jammed.jpg | grep -i '14fe'
 
@@ -44,7 +44,7 @@ hexdump -C jammed.jpg | grep -i '14fe'
 
 <br /> 
 
-At the offset we can see the the trailer hex values `FF D9` for the first image(our original image) followed by the header hex values `FF D8 FF` for the new image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Now calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
+At that offset we can see the the trailer hex values `FF D9` for the first image (our original image) followed by the header hex values `FF D8 FF` for the new image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Next, calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
 ```
 python
 
@@ -57,7 +57,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <br />
 
-Use the decimal offset and the 'dd' to extract the embedded jpeg:
+Use the decimal offset and the `dd` to extract the embedded jpeg:
 ```
 dd if="jammed.jpg" bs=1 skip=85986 of="flag.jpg"
 ```
@@ -65,6 +65,7 @@ dd if="jammed.jpg" bs=1 skip=85986 of="flag.jpg"
 <br />
 
 flag.jpg:
+
 ![flag](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/carve_flag.jpg)
 
 <br />
