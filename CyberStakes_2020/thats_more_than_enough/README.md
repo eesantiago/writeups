@@ -68,6 +68,5 @@ flag.jpg:
 
 ![flag](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/carve_flag.jpg)
 
-<br />
 
 ## Flag: ACI{2d990186dca8384adb00fcbf4af}
