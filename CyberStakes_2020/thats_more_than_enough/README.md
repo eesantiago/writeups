@@ -44,7 +44,7 @@ hexdump -C jammed.jpg | grep -i '14fe'
 
 <br /> 
 
-At that offset we can see the the trailer hex values `FF D9` for the first image (our original image) followed by the header hex values `FF D8 FF` for the new image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Next, calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
+At that offset we can see the the trailer hex values `FF D9` for the first image (our original image) followed by the header hex values `FF D8 FF` for the newly embedded image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Next, calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
 ```
 python
 
@@ -57,7 +57,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <br />
 
-Use the decimal offset and the `dd` to extract the embedded jpeg:
+Use the decimal offset with `dd` to extract the embedded jpeg:
 ```
 dd if="jammed.jpg" bs=1 skip=85986 of="flag.jpg"
 ```
