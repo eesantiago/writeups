@@ -16,7 +16,7 @@ http://challenge.acictf.com:54803/jammer
 
 <br />
 
-We can upload an [image](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/Capture-the-flag.jpg) to the JPEG Jammer and download the result.  I first used 'binwalk' on both the original image and the jammed image to see what the difference was:
+We can upload an [image](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/Capture-the-flag.jpg) to the JPEG Jammer and download the result.  I first used `binwalk` on both the original image and the jammed image to see what the difference was:
 ```
 binwalk Capture-the-flag.jpg
 
@@ -44,7 +44,7 @@ hexdump -C jammed.jpg | grep -i '14fe'
 
 <br /> 
 
-At the offset we can see the the trailer hex values 'FF D9' for the first image(our original image) followed by the header hex values 'FF D8 FF' for the new image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Now calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
+At the offset we can see the the trailer hex values `FF D9` for the first image(our original image) followed by the header hex values `FF D8 FF` for the new image, also referred to as the [magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures).  Now calculate the number of bits from the offset in decimal at which the jpeg file starts using python:
 ```
 python
 
