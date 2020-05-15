@@ -16,7 +16,7 @@ http://challenge.acictf.com:54803/jammer
 
 <br />
 
-We can upload an [image]() to the JPEG Jammer and download the result.  I first used 'binwalk' on both the original image and the jammed image to see what the difference was:
+We can upload an [image](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/Capture-the-flag.jpg) to the JPEG Jammer and download the result.  I first used 'binwalk' on both the original image and the jammed image to see what the difference was:
 ```
 binwalk Capture-the-flag.jpg
 
