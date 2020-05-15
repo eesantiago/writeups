@@ -12,7 +12,7 @@ First lets navigate to the JPEG Jammer in a web browser:
 ```
 http://challenge.acictf.com:54803/jammer
 ```
-![jammer]()
+![jammer](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/screenshots/jammer.JPG)
 
 <br />
 
