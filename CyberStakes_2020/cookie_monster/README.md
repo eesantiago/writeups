@@ -1,9 +1,8 @@
 # WORK IN PROGRESS
 
-# Boot Riddle
-
-* **Category**: Forensics
-* **Points**: 100
+# Cookie Monster
+* **Category**: Web Security
+* **Points**: 200
 * **Challenge**: Lets make some yummy cookies! Maybe you can even find some extra tasty ones: http://challenge.acictf.com:27734.
 * **Hint #1**: If only we could inspect the device's memory while it is running...
 * **Hint #2**: You can control the value so select all you want.
