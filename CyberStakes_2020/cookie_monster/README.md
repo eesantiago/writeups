@@ -14,13 +14,13 @@ First lets navigate to the challenge in a web browser:
 ```
 http://challenge.acictf.com:27734.
 ```
-![cookiemonster]()
+![cookiemonster](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/cookiemonster.JPG)
 
 Based on the name of the challenge and some of the hints, we can assume that we are going to [stealing cookies via XSS](https://www.openlearning.com/u/ivanteong/blog/StealingCookiesViaXssUsingPhpOrRequestbin/).  Lets submit a cookie to the cookie monster (random name and ingredients) and [capture the POST request in Burp Suite](https://portswigger.net/burp/documentation/desktop/tools/proxy/getting-started):
 
 <br />
 
-![burp1]()
+![burp1](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/burp1.JPG)
 
 <br />
 
@@ -42,7 +42,7 @@ Forward the POST request Burp Suite and we get an alert message on the next page
 
 <br /> 
 
-![alert]()
+![alert](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/alert.JPG)
 
 <br /> 
 
@@ -65,13 +65,13 @@ Refresh the PostBin page and you should see the admin cookie:
 
 <br />
 
-![admincookie]()
+![admincookie](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/admincookie.JPG)
 
 <br />
 
 Now that we have the admin cookie 'b4697910-6dbc-4836-851b-a14e7a5bb7d0', we can use this to navigate to the *Cookie Admin* page.  Intercept the GET request in BurpSuite and replace your cookie with the admin cookie:
 
-![burp2]()
+![burp2](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/burp2.JPG)
 
 <br />
 
@@ -80,7 +80,7 @@ We are presented with a page with a link to *Flag Cookie*.  Click it to get the 
 
 <br />
 
-![flagcookie]()
+![flagcookie](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/flagcookie.JPG)
 
 <br />
 
