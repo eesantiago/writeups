@@ -16,6 +16,8 @@ http://challenge.acictf.com:27734.
 ```
 ![cookiemonster](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/cookiemonster.JPG)
 
+<br />
+
 If we click *more info*, there is a hidden link to *Cookie Admin* under the *Cookie* section.  Trying to navigate to this page gives an HTTP 403 Forbidden error message, so we will need to authenticate as an admin if we want to see the page.
 
 Based on the name of the challenge and some of the hints, we can assume that we are going to [stealing cookies via XSS](https://www.openlearning.com/u/ivanteong/blog/StealingCookiesViaXssUsingPhpOrRequestbin/).  Lets submit a cookie to the cookie monster (random name and ingredients) and [capture the POST request in Burp Suite](https://portswigger.net/burp/documentation/desktop/tools/proxy/getting-started):
