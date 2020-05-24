@@ -1,0 +1,11 @@
+Package: nping
+Version: 7.70-1
+Depends: libc, libpcap, libpthread, libstdcpp
+Source: feeds/packages/net/nmap
+License: GPL-2.0
+LicenseFiles: COPYING
+Section: net
+Maintainer: Nuno Goncalves <nunojpg@gmail.com>
+Architecture: mipsel_24kc
+Installed-Size: 144738
+Description:  Network packet generation tool / ping utility

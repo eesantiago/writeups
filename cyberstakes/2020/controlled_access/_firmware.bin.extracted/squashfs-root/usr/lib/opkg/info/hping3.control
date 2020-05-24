@@ -1,0 +1,11 @@
+Package: hping3
+Version: 20051105-1
+Depends: libc, libpcap, libpthread
+Source: package/network/utils/hping3
+Section: net
+Architecture: mipsel_24kc
+Installed-Size: 43124
+Description:  hping is a command-line oriented TCP/IP packet assembler/analyzer. The interface is
+ inspired to the ping(8) unix command, but hping isn't only able to send ICMP echo
+ requests. It supports TCP, UDP, ICMP and RAW-IP protocols, has a traceroute mode, the
+ ability to send files between a covered channel, and many other features.

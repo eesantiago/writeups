@@ -1,0 +1,4 @@
+/etc/hotplug.d/iface/20-autossh
+/etc/config/autossh
+/etc/init.d/autossh
+/usr/sbin/autossh

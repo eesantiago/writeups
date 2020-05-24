@@ -1,0 +1,11 @@
+Package: libelf1
+Version: 0.169-1
+Depends: libc, zlib
+Source: package/libs/elfutils
+License: GPL-3.0+
+LicenseFiles: COPYING COPYING-GPLV2 COPYING-LGPLV3
+Section: libs
+Maintainer: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Architecture: mipsel_24kc
+Installed-Size: 41397
+Description:  ELF manipulation libraries (libelf)

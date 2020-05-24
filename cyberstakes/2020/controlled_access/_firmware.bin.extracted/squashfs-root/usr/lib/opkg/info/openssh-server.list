@@ -1,0 +1,4 @@
+/usr/sbin/sshd
+/etc/init.d/sshd
+/etc/ssh/sshd_config
+/lib/upgrade/keep.d/openssh-server

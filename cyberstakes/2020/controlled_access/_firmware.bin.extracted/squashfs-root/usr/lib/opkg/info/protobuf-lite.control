@@ -1,0 +1,16 @@
+Package: protobuf-lite
+Version: 3.5.1-1
+Depends: libc, zlib, libpthread, libstdcpp
+Source: package/libs/protobuf
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Section: libs
+Maintainer: Ken Keys <kkeys@caida.org>
+Architecture: mipsel_24kc
+Installed-Size: 116647
+Description:  Protocol Buffers are a way of encoding structured data in an efficient
+ yet extensible format. Google uses Protocol Buffers for almost all
+ of its internal RPC protocols and file formats.
+ 
+ This package provides the libprotobuf-lite library.
+ 

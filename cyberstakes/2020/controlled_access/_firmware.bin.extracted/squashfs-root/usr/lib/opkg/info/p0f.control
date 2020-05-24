@@ -1,0 +1,11 @@
+Package: p0f
+Version: 3.09b
+Depends: libc, libpcap, libpthread
+Source: package/network/utils/p0f
+Section: net
+Maintainer: Michal Zalewski <lcamtuf@coredump.cx>
+Architecture: mipsel_24kc
+Installed-Size: 59832
+Description:  p0f is a passive TCP/IP stack fingerprinting tool. p0f can attempt to identify the system running on 
+ machines that send network traffic to the box it is running on, or to a machine that shares a medium with 
+ the machine it is running on. p0f can also assist in analysing other aspects of the remote system.

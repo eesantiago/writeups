@@ -1,0 +1,776 @@
+Package: terminfo
+Version: 6.1-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: iwinfo
+Version: 2018-07-31-65b8333f-1
+Depends: libc, libiwinfo
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libc
+Version: 1.1.19-1
+Depends: libgcc
+Status: install hold installed
+Essential: yes
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: opkg
+Version: 2019-01-18-7708a01a-1
+Depends: libc, uclient-fetch, libpthread, libubox
+Status: install user installed
+Essential: yes
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/opkg.conf f38c19f696ea87c0b30eb5bfeb8657237f4625e1a749c58b99f01595edfb6446
+ /etc/opkg/customfeeds.conf 61d1f3aa62fe977614ed0c2f0ad3b2ee2f7b451bfb34812071d86d31a4d43d4a
+Installed-Time: 1573015920
+
+Package: libpthread
+Version: 1.1.19-1
+Depends: libgcc
+Status: install hold installed
+Essential: yes
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: ubus
+Version: 2018-10-06-221ce7e7-1
+Depends: libc, libubus, libblobmsg-json, ubusd
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: rpcd
+Version: 2018-11-28-3aa81d0d-1
+Depends: libc, libubus, libubox, libuci, libblobmsg-json
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/rpcd 81a24774226d42c6ea53b531992335cc910094a7e17f80a803e680e2eededd4f
+Installed-Time: 1573015920
+
+Package: busybox
+Version: 1.28.4-3
+Depends: libc, jsonfilter
+Status: install user installed
+Essential: yes
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Alternatives: 100:/usr/bin/flock:/bin/busybox, 100:/usr/bin/free:/bin/busybox, 100:/sbin/ip:/bin/busybox, 100:/bin/kill:/bin/busybox, 100:/usr/bin/pgrep:/bin/busybox, 100:/bin/ps:/bin/busybox, 100:/usr/bin/top:/bin/busybox, 100:/usr/bin/uptime:/bin/busybox
+
+Package: kmod-nf-reject6
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: protobuf-lite
+Version: 3.5.1-1
+Depends: libc, zlib, libpthread, libstdcpp
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-tun
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: bash
+Version: 4.4.18-2
+Depends: libc, libncurses, libreadline
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: swconfig
+Version: 11
+Depends: libc, libuci, libnl-tiny
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libiwinfo
+Version: 2018-07-31-65b8333f-1
+Depends: libc, libuci, libubus
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libcurl
+Version: 7.60.0-3
+Depends: libc, libmbedtls, ca-bundle
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-nf-flow
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-conntrack
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-lib-crc-ccitt
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: openssh-server
+Version: 7.7p1-2
+Depends: libc, libopenssl, zlib, openssh-keygen
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/ssh/sshd_config 8fda08875cec1ca9e8c9e73395fe1408223e38e1c00d65160992dee0399df237
+Installed-Time: 1573015920
+
+Package: kmod-pppoe
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-ppp, kmod-pppox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-pppox
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-ppp
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ipt-conntrack
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-ipt-core, kmod-nf-conntrack
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-nf-reject
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: base-files
+Version: 194.2-r0+7850-fb83a51832
+Depends: libc, netifd, procd, jsonfilter, usign, openwrt-keyring, fstools, fwtool
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/ethers 56bda09b0aa3d1e88107bfa8a1c6e4449d5c1f47245dc1c4037ff9b5db163b7c
+ /etc/group cc81720c9b4bb67c723fcf7dc51823a9e6937c4a3e6302db60285ffebfde08f7
+ /etc/hosts c1a978d90673437b35fa9494e0a54294062c152bb653d490b718052ab88447fd
+ /etc/inittab 8b395f7d827753e1e92d4a1c369d9fe16caa23bf742b3f78e4599c4dd9b1b6e3
+ /etc/iproute2/rt_protos a0712b1771c8d5f3e0dcf9a6314880e71aa3498ea1ae873535bdfcf70d814061
+ /etc/iproute2/rt_tables f771e2b81741f70e3faf658dc504f0dc048672fc8caaadea15e46c35da3de8f8
+ /etc/passwd 6a451aa33393f47ade89b8bce4d9711818c2630394c3967265ffed276bb25a55
+ /etc/profile 9e36315e247bae64a6027c973cb421ff6fd76b8eae5adbac824cc8ad63f5a996
+ /etc/protocols 7d551355d5540b07b9d86e623cbbc4abecbb94d2a662b3afcc917940eb0e3d52
+ /etc/rc.local 515018aa94eb4937dade12dc0d69890b352af35a5ab5fb8203f9ed10990ac06f
+ /etc/services 754ccc71ca347bc79ac4c45139d416b7cf1e65a919dad1db15613a216cd6b9cc
+ /etc/shadow ccbbfeee2dd560403fea13f7f431ebd21d9bb4b3d41e48e892013fa451f91cc4
+ /etc/shells 8b35ce73c18161a7d7ed16fa244410993bd031515260e3e0c11749047df48d0a
+ /etc/sysctl.conf c02fe88dc055a1eaee9e7cb631760a3a5a9cea55610b42aa45196838c6f1a55e
+ /etc/sysupgrade.conf 9e87b05fe2f12c84d1c465b396322748479f64bc40e5bab061887f0bd95020a6
+Installed-Time: 1573015920
+
+Package: kmod-nf-nat
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-conntrack
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libpcre
+Version: 8.41-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: macchanger
+Version: 1.7.0-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: netifd
+Version: 2019-01-31-a2aba5c7-2.1
+Depends: libc, libuci, libnl-tiny, libubus, ubus, ubusd, jshn, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: ngrep
+Version: 1.45-3
+Depends: libc, libpcap, libpcre
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: autossh
+Version: 1.4e-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/autossh 263375ae66cd9e2c2115315f741539da87764e18cdcbb794b06d3a80c4dd7270
+Installed-Time: 1573015920
+
+Package: uboot-envtools
+Version: 2018.03-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: dnsmasq
+Version: 2.80-1.4
+Depends: libc, libubus
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/dhcp e90f7b32e9c4e8f526a435607f792aa0439dd69fabfe1038eed5b27efc616be0
+ /etc/dnsmasq.conf 1e6ab19c1ae5e70d609ac7b6246541d52042e4dee1892f825266507ef52d7dfd
+Installed-Time: 1573015920
+
+Package: procd
+Version: 2018-03-28-dfb68f85-1
+Depends: libc, ubusd, ubus, libjson-script, ubox, libubox, libubus
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libmbedtls
+Version: 2.14.1-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: ubusd
+Version: 2018-10-06-221ce7e7-1
+Depends: libc, libubox, libblobmsg-json
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libelf1
+Version: 0.169-1
+Depends: libc, zlib
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: firewall
+Version: 2018-08-13-1c4d5bcd-1
+Depends: libc, libubox, libubus, libuci, libip4tc, libip6tc, libxtables, kmod-ipt-core, kmod-ipt-conntrack, kmod-nf-conntrack6, kmod-ipt-nat
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/firewall 303d858071dfcf1d1e8593168eb9c582a2c774211f23cef4bf7c85e4060a5e8c
+ /etc/firewall.user bd68324966481011f5e36570258ad97dd422655c16f3119d48325ed8459de510
+Installed-Time: 1573015920
+
+Package: kmod-nf-ipt
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libuci
+Version: 2018-08-11-4c8b4d6e-1
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libip4tc
+Version: 1.6.2-1
+Depends: libc, libxtables
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: tcpdump
+Version: 4.9.2-1
+Depends: libc, libpcap
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ip6tables
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-reject6, kmod-nf-ipt6, kmod-ipt-core
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: odhcp6c
+Version: 2018-07-14-67ae6a71-15
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: fstools
+Version: 2018-12-28-af93f4b8-3
+Depends: libc, ubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: uclient-fetch
+Version: 2018-11-24-3ba74ebc-1
+Depends: libc, libuclient
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libuclient
+Version: 2018-11-24-3ba74ebc-1
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: uci
+Version: 2018-08-11-4c8b4d6e-1
+Depends: libc, libuci
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: wpad-mini
+Version: 2018-05-21-62566bc2-5
+Depends: libc, hostapd-common, libubus
+Provides: hostapd, wpa-supplicant
+Conflicts: hostapd, hostapd-mini, hostapd-openssl, hostapd-wolfssl, wpad, wpad-mesh-openssl, wpad-mesh-wolfssl, wpad, wpad-mesh-openssl, wpad-mesh-wolfssl
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: nmap
+Version: 7.70-1
+Depends: libc, libpcap, libstdcpp, zlib, libpcre
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libstdcpp
+Version: 7.3.0-1
+Status: install hold installed
+Essential: yes
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: mtd
+Version: 23
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: odhcpd-ipv6only
+Version: 1.15-3
+Depends: libc, libubox, libuci, libubus, libnl-tiny
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: p0f
+Version: 3.09b
+Depends: libc, libpcap, libpthread
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libjson-c
+Version: 0.12.1-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libgcc
+Version: 7.3.0-1
+Status: install hold installed
+Essential: yes
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libreadline
+Version: 7.0-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libip6tc
+Version: 1.6.2-1
+Depends: libc, libxtables
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libubox
+Version: 2018-07-25-c83a84af-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: kmod-leds-gpio
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-gpio-button-hotplug
+Version: 4.14.109-2
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: logd
+Version: 2018-02-14-128bc35f-2
+Depends: libc, libubox, libubus, libblobmsg-json
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: liblzo
+Version: 2.10-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: openssh-keygen
+Version: 7.7p1-2
+Depends: libc, libopenssl, zlib
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libjson-script
+Version: 2018-07-25-c83a84af-2
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libblobmsg-json
+Version: 2018-07-25-c83a84af-2
+Depends: libc, libjson-c, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: iptables
+Version: 1.6.2-1
+Depends: libc, kmod-ipt-core, libip4tc, libip6tc, libxtables
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: openwrt-keyring
+Version: 2018-05-18-103a32e9-1
+Depends: libc
+Provides: lede-keyring
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: openvpn-openssl
+Version: 2.4.5-4.2
+Depends: libc, kmod-tun, liblzo, libopenssl
+Provides: openvpn, openvpn-crypto
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/openvpn d0b1ba14d918cbef81695ec590efbc9a67c94dd09cb84a2c478f05e5a698c723
+Installed-Time: 1573015920
+
+Package: jshn
+Version: 2018-07-25-c83a84af-2
+Depends: libc, libjson-c, libubox, libblobmsg-json
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libncurses
+Version: 6.1-1
+Depends: libc, terminfo
+Provides: libncursesw
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ipt-core
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-reject, kmod-nf-ipt
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libpcap
+Version: 1.8.1-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ppp
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-lib-crc-ccitt, kmod-slhc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libubus
+Version: 2018-10-06-221ce7e7-1
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: uhttpd
+Version: 2018-11-28-cdfc902a-2
+Depends: libc, libubox, libblobmsg-json, libjson-script
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/config/uhttpd ccb1b37c12734b273e6046e24a50b2af3a82274f4463ae68c9dabf7aed932099
+Installed-Time: 1573015920
+
+Package: kmod-nf-conntrack
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107)
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: usign
+Version: 2015-07-04-ef641914-1
+Depends: libc, libubox
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libxtables
+Version: 1.6.2-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: ip6tables
+Version: 1.6.2-1
+Depends: libc, kmod-ip6tables, iptables
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: zlib
+Version: 1.2.11-2
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: kmod-nf-ipt6
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-ipt
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: ca-bundle
+Version: 20180409-2
+Depends: libc
+Status: install user installed
+Architecture: all
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: at
+Version: 3.1.20-1
+Depends: libc, libelf1
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: nping
+Version: 7.70-1
+Depends: libc, libpcap, libpthread, libstdcpp
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-nf-conntrack6
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-nf-conntrack
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libsqlite3
+Version: 3260000-4
+Depends: libc, libpthread, zlib
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: ubox
+Version: 2018-02-14-128bc35f-2
+Depends: libc, libubox, ubusd, ubus, libubus, libuci
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: kernel
+Version: 4.14.109-1-edb7cba989b09517eafcfcfab32d5107
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: libnl-tiny
+Version: 0.1-5
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: openssh-client
+Version: 7.7p1-2
+Depends: libc, libopenssl, zlib
+Status: install user installed
+Architecture: mipsel_24kc
+Conffiles:
+ /etc/ssh/ssh_config b2a1e1bb1b0de5c309b22d97e849920339e0a9e4fb0836b75fc6f28b4789117a
+Installed-Time: 1573015920
+
+Package: cc-client
+Version: master-1
+Depends: libc, libpthread, libstdcpp, libcurl, libopenssl, libsqlite3, protobuf-lite
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: fwtool
+Version: 1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: jsonfilter
+Version: 2018-02-04-c7e938d6-1
+Depends: libc, libubox, libjson-c
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: hostapd-common
+Version: 2018-05-21-62566bc2-5
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+Auto-Installed: yes
+
+Package: hping3
+Version: 20051105-1
+Depends: libc, libpcap, libpthread
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ipt-offload
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-ipt-core, kmod-nf-flow
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: libopenssl
+Version: 1.0.2q-1
+Depends: libc
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-slhc
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-lib-crc-ccitt
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: rpcd-mod-rrdns
+Version: 20170710
+Depends: libc, rpcd, libubox, libubus
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: kmod-ipt-nat
+Version: 4.14.109-1
+Depends: kernel (= 4.14.109-1-edb7cba989b09517eafcfcfab32d5107), kmod-ipt-core, kmod-nf-nat
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+
+Package: arp-scan
+Version: 1.9-40-g69b2f70-1
+Depends: libc, libpcap
+Status: install user installed
+Architecture: mipsel_24kc
+Installed-Time: 1573015920
+

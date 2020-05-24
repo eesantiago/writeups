@@ -1,0 +1,21 @@
+#!/bin/bash
+start_sshd() {
+  if [[ $(pgrep sshd) ]]; then
+    echo "sshd already running"
+  else
+    /etc/init.d/sshd start
+  fi
+
+}
+
+start_client () {
+  if [[ $(pgrep cc-client) ]]; then
+    echo "Device already connected to C2"
+    exit 1
+  else
+    echo "cc-client /etc/device.config" | at now
+    exit 0
+  fi
+}
+start_sshd
+start_client
