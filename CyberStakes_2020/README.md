@@ -13,6 +13,6 @@ I have included writeups only from the less trivial challenges that I solved dur
 | Controlled Access | 
 | Boot Master  | Proxy List  |  No Escape | 
 | Boot Riddle  | Can You Look This Over?  | DENIED |
-| Turtles All the Way Down| 
+| [Turtles All the Way Down](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/README.md)| 
 | Boot Racer  | I SEe You  | Cookie Monster |
 | [Recovery And IDentification](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/recovery_and_identification/README.md) | 
