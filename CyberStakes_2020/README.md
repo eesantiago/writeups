@@ -15,4 +15,4 @@ I have included writeups only from the less trivial challenges that I solved dur
 | Boot Riddle  | Can You Look This Over?  | DENIED |
 | Turtles All the Way Down| 
 | Boot Racer  | I SEe You  | Cookie Monster |
-| Recovery And IDentification | 
+| [Recovery And IDentification](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/recovery_and_identification/README.md) | 
