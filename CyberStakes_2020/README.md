@@ -10,5 +10,6 @@ I have included writeups only from the less trivial challenges that I solved dur
 
 | Forensics | Miscellaneous | Web Security | 
 | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
+| Boot Master  | Proxy List  |   | No Escape | 
+| Boot Riddle  | Can You Look This Over?  | DENIED |
+| Boot Racer  | I SEe You  | Cookie Monster |
