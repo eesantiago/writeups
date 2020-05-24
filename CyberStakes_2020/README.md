@@ -10,6 +10,8 @@ I have included writeups only from the less trivial challenges that I solved dur
 
 | Forensics | Miscellaneous | Web Security | 
 | ------------- | ------------- | ------------- |
+| Controlled Access | 
 | Boot Master  | Proxy List  |  No Escape | 
 | Boot Riddle  | Can You Look This Over?  | DENIED |
+| Turtles All the Way Down| 
 | Boot Racer  | I SEe You  | Cookie Monster |
