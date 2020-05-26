@@ -34,7 +34,7 @@ bless floppy.img
 
 <br />
 
-![bless](https://github.com/EESantiago/Writeups/blob/master/CyberStakes_2020/boot_master/screenshots/bless.png)
+![bless](https://github.com/EESantiago/Writeups/blob/master/cyberstakes/2020/boot_master/screenshots/bless.png)
 
 <br />
 <br />
@@ -46,7 +46,7 @@ qemu-system-i386 floppy.img
 ```
 <br />
 
-![QEMU](https://github.com/EESantiago/Writeups/blob/master/CyberStakes_2020/boot_master/screenshots/QEMU.png)
+![QEMU](https://github.com/EESantiago/Writeups/blob/master/cyberstakes/2020/boot_master/screenshots/QEMU.png)
 
 <br />
 <br />
