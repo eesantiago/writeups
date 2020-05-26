@@ -15,7 +15,7 @@ qemu-system-i386 floppy.img
 ```
 <br />  
 
-![riddle](https://github.com/EESantiago/Writeups/blob/master/CyberStakes_2020/boot_riddle/screenshots/riddle.png)
+![riddle](https://github.com/EESantiago/Writeups/blob/master/cyberstakes/2020/boot_riddle/screenshots/riddle.png)
 <br />  
 <br />  
 
