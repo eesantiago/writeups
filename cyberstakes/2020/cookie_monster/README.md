@@ -14,7 +14,7 @@ First lets navigate to the challenge in a web browser:
 ```
 http://challenge.acictf.com:27734.
 ```
-![cookiemonster](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/cookiemonster.JPG)
+![cookiemonster](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/cookiemonster.JPG)
 
 <br />
 
@@ -24,7 +24,7 @@ Based on the name of the challenge and some of the hints, we can assume that we 
 
 <br />
 
-![burp1](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/burp1.JPG)
+![burp1](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/burp1.JPG)
 
 <br />
 
@@ -46,7 +46,7 @@ Forward the POST request Burp Suite and we get an alert message on the next page
 
 <br /> 
 
-![alert](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/alert.JPG)
+![alert](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/alert.JPG)
 
 <br /> 
 
@@ -69,13 +69,13 @@ Refresh the PostBin page and you should see the admin cookie:
 
 <br />
 
-![admincookie](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/admincookie.JPG)
+![admincookie](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/admincookie.JPG)
 
 <br />
 
 Now that we have the admin cookie 'b4697910-6dbc-4836-851b-a14e7a5bb7d0', we can use this to navigate to the *Cookie Admin* page.  Intercept the GET request in BurpSuite and replace your cookie with the admin cookie:
 
-![burp2](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/burp2.JPG)
+![burp2](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/burp2.JPG)
 
 <br />
 
@@ -84,7 +84,7 @@ We are presented with a page with a link to *Flag Cookie*.  Click it to get the 
 
 <br />
 
-![flagcookie](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/cookie_monster/screenshots/flagcookie.JPG)
+![flagcookie](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/screenshots/flagcookie.JPG)
 
 <br />
 
