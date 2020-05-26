@@ -12,7 +12,7 @@ First lets navigate to the JPEG Jammer in a web browser:
 ```
 http://challenge.acictf.com:54803/jammer
 ```
-![jammer](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/screenshots/jammer.JPG)
+![jammer](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/thats_more_than_enough/screenshots/jammer.JPG)
 
 <br />
 
@@ -66,7 +66,7 @@ dd if="jammed.jpg" bs=1 skip=85986 of="flag.jpg"
 
 flag.jpg:
 
-![flag](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/thats_more_than_enough/carve_flag.jpg)
+![flag](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/thats_more_than_enough/carve_flag.jpg)
 
 
 ## Flag: ACI{2d990186dca8384adb00fcbf4af}
