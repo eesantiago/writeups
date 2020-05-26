@@ -11,8 +11,9 @@ I have included writeups only from the less trivial challenges that I solved dur
 | Forensics | Miscellaneous | Web Security | Reverse Engineering |
 | ------------- | ------------- | ------------- | ------------- |
 | Controlled Access | | | Reverser Engineering 101
-| Boot Master  | Proxy List  |  No Escape | Lockbox
-| Boot Riddle  | Can You Look This Over?  | DENIED |
-| [Turtles All the Way Down](https://github.com/eesantiago/Writeups/blob/master/CyberStakes_2020/turtles_all_the_way_down/README.md)| [Recovery And IDentification]() | The SQL Always Sucks
-| Boot Racer  | I SEe You  | Cookie Monster |
-|  | 
+| [Boot Master](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/boot_master/README.md)  | [Proxy List](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/proxy_list/README.md)  |  No Escape | Lockbox
+| [Boot Riddle](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/boot_riddle/README.md)  | [Can You Look This Over?](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/can_you_look_this_over/README.md)  | DENIED |
+| [Turtles All the Way Down](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/turtles_all_the_way_down/README.md)| [Recovery And IDentification](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/recovery_and_identification/README.md) | [The SQL Always Sucks](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/sql_always_sucks/README.md)
+| Boot Racer  | I SEe You  | [Cookie Monster](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/cookie_monster/README.md) |
+|  |
+| [That's More Than Enough](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/thats_more_than_enough/README.md)
