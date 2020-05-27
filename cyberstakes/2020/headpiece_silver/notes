@@ -1,0 +1,138 @@
+root@an0nym0us3:/opt/RsaCtfTool# python RsaCtfTool.py -n 122298190177919866881639090045815514691491489519639425496178483984084352945237 -e 65537 --uncipher "aa5872c96a5258247ff2b3c47c88611b5330aa210206498dbe1e16ee75d6e0c"
+Traceback (most recent call last):
+  File "RsaCtfTool.py", line 143, in <module>
+    uncipher = get_numeric_value(uncipher)
+  File "/opt/RsaCtfTool/lib/utils.py", line 16, in get_numeric_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'aa5872c96a5258247ff2b3c47c88611b5330aa210206498dbe1e16ee75d6e0c'
+root@an0nym0us3:/opt/RsaCtfTool# nc challenge.acictf.com 22549
+Welcome to Headpiece Silver.
+We have employed the greatest cryptographers to develop out new cryptosystem.
+Let's see if you can find a way to break it.
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+4
+
+Please send in a ciphertext as a hex string:
+aa5872c96a5258247ff2b3c47c88611b5330aa210206498dbe1e16ee75d6e0c
+Your ciphertext decrypted to:
+465956587173553037644e66596e794a
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+3
+
+Please enter password:
+465956587173553037644e66596e794a
+Incorrect, it will take more than that to defeat our system.
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+root@an0nym0us3:/opt/RsaCtfTool# nc challenge.acictf.com 22549
+Welcome to Headpiece Silver.
+We have employed the greatest cryptographers to develop out new cryptosystem.
+Let's see if you can find a way to break it.
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+4
+
+Please send in a ciphertext as a hex string:
+password
+You did not send a hex string
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+root@an0nym0us3:/opt/RsaCtfTool# nc challenge.acictf.com 22549
+Welcome to Headpiece Silver.
+We have employed the greatest cryptographers to develop out new cryptosystem.
+Let's see if you can find a way to break it.
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+3
+
+Please enter password:
+FYVXqsU07dNfYnyJ
+You beat our crypto, here is your reward!
+ACI{73d7aae9e84d78c42f08e1ea83a}
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+1
+
+Here is our public key information
+N: 122298190177919866881639090045815514691491489519639425496178483984084352945237
+e: 65537
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+2
+
+If you can decrypt the password you will get a reward.
+aa5872c96a5258247ff2b3c47c88611b5330aa210206498dbe1e16ee75d6e0c
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+
+
+Choose an option:
+1. Print public key
+2. Get password ciphertext
+3. Enter password
+4. Test ciphertext
+5. Exit
+^C
+
+
+# convert the hex string to asciii with tool;
+
+465956587173553037644e66596e794a
+
+https://www.rapidtables.com/convert/number/ascii-hex-bin-dec-converter.html
+
+
+# get password :
+
+
+FYVXqsU07dNfYnyJ
+You beat our crypto, here is your reward!
+ACI{73d7aae9e84d78c42f08e1ea83a}
+

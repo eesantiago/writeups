@@ -1,0 +1,60 @@
+----
+type=USER_CMD msg=audit(11/19/2019 06:20:50.229:506) : pid=3869 uid=ftpuser auid=ftpuser ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:20:50.539:535) : pid=3892 uid=ftpuser auid=ftpuser ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=rsync --server -vlDtprze.iLsfxC --delete . /vagrant terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:20:50.994:588) : pid=3988 uid=ftpuser auid=ftpuser ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:20:52.998:629) : pid=4014 uid=ftpuser auid=ftpuser ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=yum -y update terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:22:37.950:898) : pid=14990 uid=ftpuser auid=ftpuser ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=yum -y install wget nano kernel-devel gcc terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:23:06.710:971) : pid=26960 uid=ftpuser auid=ftpuser ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=reboot terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:23:38.635:59) : pid=937 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=cd /opt terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:23:38.653:65) : pid=940 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=wget http://download.virtualbox.org/virtualbox/6.0.14/VBoxGuestAdditions_6.0.14.iso -O /opt/VBGAdd.iso terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:23:49.690:102) : pid=952 uid=ftpuser auid=ftpuser ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=mount /opt/VBGAdd.iso -o loop /mnt terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:23:51.520:138) : pid=1000 uid=ftpuser auid=ftpuser ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=sh /mnt/VBoxLinuxAdditions.run --nox11 terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:24:54.300:183) : pid=13011 uid=ftpuser auid=ftpuser ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=umount /mnt terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:24:56.100:219) : pid=13049 uid=ftpuser auid=ftpuser ses=5 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=rm /opt/VBGAdd.iso terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:25:00.070:420) : pid=13578 uid=ftpuser auid=ftpuser ses=6 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:25:24.988:347) : pid=1806 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:25:25.245:376) : pid=1829 uid=ftpuser auid=ftpuser ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=rsync --server -vlDtprze.iLsfxC --delete . /vagrant terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:25:25.668:429) : pid=1925 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:25:29.618:639) : pid=2445 uid=ftpuser auid=ftpuser ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:22.294:277) : pid=1699 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:22.425:293) : pid=1730 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:22.545:309) : pid=1761 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:24.045:378) : pid=2002 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:25.115:453) : pid=2320 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:25.235:469) : pid=2348 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:25.375:485) : pid=2380 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:25.505:501) : pid=2408 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:26.135:517) : pid=2437 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:26.525:553) : pid=2513 uid=ftpuser auid=ftpuser ses=1 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=bash -l terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:30:52.767:619) : pid=2624 uid=ftpuser auid=ftpuser ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/vagrant/website cmd=autrace /bin/python3 server.py terminal=? res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:32:11.864:122760) : pid=10495 uid=ftpuser auid=ftpuser ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=kill -9 2628 terminal=pts/0 res=success' 
+----
+type=USER_CMD msg=audit(11/19/2019 06:32:13.734:122801) : pid=10535 uid=ftpuser auid=ftpuser ses=4 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='cwd=/home/vagrant cmd=cp -r /var/log/audit/ /vagrant/audit/ terminal=pts/0 res=success' 
