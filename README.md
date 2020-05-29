@@ -6,5 +6,5 @@ Writeups from Capture the Flag events and ongoing challenges:
 * All-Army Cyberstakes 4: 24 April - 03 May 2020
 #### Parsons Cyber CTF Competitions
 * November 2018  
-* March 2020
+* [March 2020](https://github.com/eesantiago/Writeups/blob/master/parsons_cyber/march_2020/2020.03.20.ParsonsCTFSolutions.pdf)
 * May 2020 
