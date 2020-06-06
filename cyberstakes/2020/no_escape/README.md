@@ -14,7 +14,7 @@ Navigating to the website, we are presented with a prompt for a username and pas
 
 <br />
 
-![site]()
+![site](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/no_escape/screenshots/site.JPG)
 
 <br />
 
@@ -22,7 +22,7 @@ Based on the hints that we have been given, we can assume that this website is v
 
 <br />
 
-![quotes]()
+![quotes](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/no_escape/screenshots/quotes.JPG)
 
 <br />
 
@@ -30,7 +30,7 @@ We get an error with our username `'` and a hash of the password.  We can user `
 
 <br />
 
-![admin]()
+![admin](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/no_escape/screenshots/admin.JPG)
 
 <br />
 
@@ -38,7 +38,7 @@ Now we have a hint that we should try to login with houdini.  Use `houdini;--` t
 
 <br />
 
-![flag]()
+![flag](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/no_escape/screenshots/flag.JPG)
 
 <br />
 
