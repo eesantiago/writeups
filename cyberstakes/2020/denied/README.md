@@ -14,7 +14,7 @@ First, lets navigate to the site in a web browser:
 
 <br />
 
-![site]()
+![site](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/denied/screenshots/site.JPG)
 
 <br />
 
@@ -35,7 +35,7 @@ Lets look at the disallowed page, `/maintenance_foo_bar_deadbeef_12345.html`:
 
 <br />
 
-![maintenance]()
+![maintenance](https://github.com/eesantiago/Writeups/blob/master/cyberstakes/2020/denied/screenshots/maintenance.JPG)
 
 <br />
 
