@@ -31,7 +31,7 @@ Disallow: /maintenance_foo_bar_deadbeef_12345.html
 
 <br />
 
-Lets look at the disallowed page, `/maintenance_foo_bar_deadbeef_12345.html`:
+Now we navigate to the disallowed page, `/maintenance_foo_bar_deadbeef_12345.html`:
 
 <br />
 
