@@ -1,0 +1,75 @@
+#conf file
+
+    flags           = REUSE
+    socket_type     = stream
+    protocol        = tcp
+    wait            = no
+    user            = root
+    server          = /opt/tenthcook
+    disable         = no
+    port            = 1392
+    instances       = UNLIMITED
+    type            = UNLISTED
+}
+
+# check the port on the target 
+
+nmap -p 1392 172.30.78.125
+
+PORT     STATE SERVICE
+1392/tcp open  iclpv-pm
+
+# open, print manager ?
+
+file tenthcook.bin 
+
+LF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=21ef795e03f9809380ea90d35ee317f8bb9ace6c, not stripped
+
+# need to make it executable and run it 
+
+chmod 744 tenthcook.bin
+
+./tenthcook.bin 
+
+I'm going to give you a number in hexadecimal
+You're going to send one back in decimal. Cool?
+Cool. Here we go: 5f45
+
+# need to convert with python 
+# try netcat:
+
+nc 172.30.78.125 1392
+
+I'm going to give you a number in hexadecimal
+You're going to send one back in decimal. Cool?
+Cool. Here we go: 17e2
+
+# now python 
+
+# need to create ascoket that will outout all the data 
+
+https://www.binarytides.com/receive-full-data-with-the-recv-socket-function-in-python/
+
+# helped but not complete
+# must do a for loop to receive all the data
+
+# need to receive the data until ta buffer is full 
+
+# example 
+
+I'm going to give you a number in hexadecimal
+You're going to send one back in decimal. Cool?
+Cool. Here we go: cc52
+52306
+Boom! That's it!
+Okay, okay. Another!
+This time this one is decimal. 35189
+What's it in binary?
+1000100101110101
+Sweet! Okay, okay, okay...
+ONE MORE!
+Two numbers. Both hexadecimal: 7996d0bb 359e5cc9
+Give me the product of the two numbers as an                             unsigned 32-bit int.
+Send it back as hexadecimal.
+*yawn*
+

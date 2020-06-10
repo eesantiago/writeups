@@ -1,0 +1,5 @@
+# look at the ICMP packets, requetssare normally 43 bytes and replies are 60 bytes, except for packet 3 which has an 83 byte request
+#check the data for that packet: 
+
+``~Paflag_{8bdbbccccb81469ba732d2d8fb4f9310}
+

@@ -1,0 +1,11 @@
+tcpdump -r b939dc905d9499c63357da96f303f71f.pcap 
+
+reading from file b939dc905d9499c63357da96f303f71f.pcap, link-type EN10MB (Ethernet)
+00:01:42.740157 IP 10.254.214.229.60966 > 10.30.227.232.domain: 49982+ A? ZmxhZ197ZWIwNzhkYjQ2MjgwNDU3Zjk2NTNiYTFjMWRjMmUxN2R9.coolnewstartup.com. (89)
+00:01:42.741592 IP 10.30.227.232.domain > 10.254.214.229.60966: 49982- 1/0/0 A 10.183.175.240 (176)
+
+# The domainname that is trying to be resolved contains base64, lets decode it:
+
+echo 'ZmxhZ197ZWIwNzhkYjQ2MjgwNDU3Zjk2NTNiYTFjMWRjMmUxN2R9' | base64 -d
+
+flag_{eb078db46280457f9653ba1c1dc2e17d}

@@ -1,0 +1,12 @@
+tcpdump -r fb92e4d33aa1b897c1d0ab50fdc4fcca.pcap 
+
+
+reading from file fb92e4d33aa1b897c1d0ab50fdc4fcca.pcap, link-type EN10MB (Ethernet)
+23:56:31.031829 IP 10.253.106.124.60489 > 10.9.34.218.domain: 34527+ TXT? coolnewstartup.com. (36)
+23:56:31.032969 IP 10.9.34.218.domain > 10.253.106.124.60489: 34527- 1/0/0 TXT "ZmxhZ197YWY4Y2I0NTVmMmRlNDc5NWE2ZjE2YTJiNjMwZTc0OTV9" (119)
+
+# that string text file looks like base64 string, lets try to decrypt:
+
+echo "ZmxhZ197YWY4Y2I0NTVmMmRlNDc5NWE2ZjE2YTJiNjMwZTc0OTV9" | base64 -d
+
+flag_{af8cb455f2de4795a6f16a2b630e7495}
