@@ -1,0 +1,223 @@
+nmap 10.10.10.191
+
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 20:36 EDT
+Nmap scan report for 10.10.10.191
+Host is up (0.059s latency).
+Not shown: 998 filtered ports
+PORT   STATE  SERVICE
+21/tcp closed ftp
+80/tcp open   http
+
+Nmap done: 1 IP address (1 host up) scanned in 6.16 seconds
+
+
+nmap -sC sV -Pn -p- 10.10.10.191
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-25 20:38 EDT
+Stats: 0:05:39 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 78.83% done; ETC: 20:45 (0:01:31 remaining)
+Nmap scan report for 10.10.10.191
+Host is up (0.046s latency).
+Not shown: 65533 filtered ports
+PORT   STATE  SERVICE VERSION
+21/tcp closed ftp
+80/tcp open   http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-generator: Blunder
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: Blunder | A blunder of interesting facts
+
+
+
+### 80 
+
+nikto -h 10.10.10.191
+
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.10.191
++ Target Hostname:    10.10.10.191
++ Target Port:        80
++ Start Time:         2020-06-25 20:38:37 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.41 (Ubuntu)
++ Retrieved x-powered-by header: Bludit
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ All CGI directories 'found', use '-C none' to test none
++ "robots.txt" contains 1 entry which should be manually viewed.
++ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ /admin/config.php: PHP Config file may contain database IDs and passwords.
++ /admin/cplogfile.log: DevBB 1.0 final (http://www.mybboard.com) log file is readable remotely. Upgrade to the latest version.
++ /admin/system_footer.php: myphpnuke version 1.8.8_final_7 reveals detailed system information.
++ OSVDB-3233: /admin/admin_phpinfo.php4: Mon Album from http://www.3dsrc.com version 0.6.2d allows remote admin access. This should be protected.
++ OSVDB-5034: /admin/login.php?action=insert&username=test&password=test: phpAuction may allow user admin accounts to be inserted without proper authentication. Attempt to log in with user 'test' password 'test' to verify.
++ OSVDB-376: /admin/contextAdmin/contextAdmin.html: Tomcat may be configured to let attackers read arbitrary files. Restrict access to /admin.
++ OSVDB-2813: /admin/database/wwForum.mdb: Web Wiz Forums pre 7.5 is vulnerable to Cross-Site Scripting attacks. Default login/pass is Administrator/letmein
++ OSVDB-2922: /admin/wg_user-info.ml: WebGate Web Eye exposes user names and passwords.
++ OSVDB-3092: /admin/: This might be interesting...
++ OSVDB-3093: /admin/auth.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/cfg/configscreen.inc.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/cfg/configsite.inc.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/cfg/configsql.inc.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/cfg/configtache.inc.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/cms/htmltags.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/credit_card_info.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/exec.php3: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/index.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/modules/cache.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/objects.inc.php4: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/script.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/settings.inc.php+: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/templates/header.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ OSVDB-3093: /admin/upload.php: This might be interesting... has been seen in web logs from an unknown scanner.
++ ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: can't connect (timeout): Operation now in progress
++ Scan terminated:  19 error(s) and 30 item(s) reported on remote host
++ End Time:           2020-06-25 21:33:18 (GMT-4) (3281 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+
+gobuster dir -w /usr/share/wordlists/dirb/common.txt --url 10.10.10.191
+
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.10.191
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/06/25 20:39:40 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/0 (Status: 200)
+/about (Status: 200)
+/admin (Status: 301)
+/cgi-bin/ (Status: 301)
+/LICENSE (Status: 200)
+/robots.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2020/06/25 20:42:12 Finished
+===============================================================
+
+dirb http://10.10.10.191 -X .php
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Fri Jun 26 09:40:56 2020
+URL_BASE: http://10.10.10.191/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+EXTENSIONS_LIST: (.php) | (.php) [NUM = 1]
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://10.10.10.191/ ----
++ http://10.10.10.191/install.php (CODE:200|SIZE:30)                                                                                                                      
+                                                                                                                                                                          
+-----------------
+END_TIME: Fri Jun 26 09:48:47 2020
+DOWNLOADED: 4612 - FOUND: 1
+
+# result 
+
+Bludit is already installed ;)
+
+dirb http://10.10.10.191 -X .txt
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Fri Jun 26 13:30:18 2020
+URL_BASE: http://10.10.10.191/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+EXTENSIONS_LIST: (.txt) | (.txt) [NUM = 1]
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://10.10.10.191/ ----
++ http://10.10.10.191/robots.txt (CODE:200|SIZE:22)                                                                                                                       
++ http://10.10.10.191/todo.txt (CODE:200|SIZE:118)                                                                                                                        
+                                                                                                                                                                          
+-----------------
+END_TIME: Fri Jun 26 13:54:38 2020
+DOWNLOADED: 4612 - FOUND: 2
+
+# resluts on the page 
+
+-Update the CMS
+-Turn off FTP - DONE
+-Remove old users - DONE
+-Inform fergus that the new blog needs images - PENDING
+
+# try fergus in the bruteforce
+ 
+
+curl http://10.10.10.191/robots.txt 
+
+
+User-agent: *
+Allow: /
+
+
+# login page
+http://10.10.10.191/admin/
+
+# page is running Bludit is a web application to build your own website or blog in seconds, it's completely free and open source. Markdown support.
+
+searchsploit bludit
+
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                           |  Path
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Bludit - Directory Traversal Image File Upload (Metasploit)                                                                              | php/remote/47699.rb
+bludit Pages Editor 3.0.0 - Arbitrary File Upload                                                                                        | php/webapps/46060.txt
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+
+
+msfconsole 
+search bludit
+
+# bludit 3.9.2 accorsing to the source 
+
+https://medium.com/@musyokaian/bludit-cms-version-3-9-2-brute-force-protection-bypass-283f39a84bbb
+
+https://rastating.github.io/bludit-brute-force-mitigation-bypass/
+
+# need to edit the python  code to take the vlause from rockyou.txt 
+https://kite.com/python/answers/how-to-iterate-through-the-lines-of-a-file-in-python
+# add this to the code to make it work
+
+[*] Trying: charlene
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+OSError: [Errno 113] No route to host
+
+# need to cewl the site y
+
+cewl -d 2 -m 5 -w passwords.txt 10.10.10.191
+# not work
+
