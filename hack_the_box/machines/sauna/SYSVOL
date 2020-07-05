@@ -1,0 +1,96 @@
+[+] Finding open SMB ports....
+[+] User SMB session establishd on 10.10.10.175...
+[+] IP: 10.10.10.175:445	Name: 10.10.10.175                                      
+	Disk                                                  	Permissions
+	----                                                  	-----------
+	SYSVOL                                            	READ ONLY
+	.\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	EGOTISTICAL-BANK.LOCAL
+	.\\EGOTISTICAL-BANK.LOCAL\
+	dr--r--r--                0 Thu Jan 23 00:51:08 2020	.
+	dr--r--r--                0 Thu Jan 23 00:51:08 2020	..
+	dr--r--r--                0 Sun Feb 16 22:41:57 2020	DfsrPrivate
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	Policies
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	scripts
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	.
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	..
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	{2619FB25-7519-4AEA-9C1E-348725EF2858}
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	{31B2F340-016D-11D2-945F-00C04FB984F9}
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	{6AC1786C-016F-11D2-945F-00C04fB984F9}
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	.
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	..
+	-r--r--r--               59 Sat Jan 25 15:48:44 2020	GPT.INI
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	Machine
+	dr--r--r--                0 Sat Jan 25 15:48:44 2020	User
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\Machine\
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	.
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	..
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	Microsoft
+	dr--r--r--                0 Sat Jan 25 15:49:04 2020	Scripts
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\Machine\Microsoft\
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	.
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	..
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	Windows NT
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\Machine\Microsoft\Windows NT\
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	.
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	..
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	SecEdit
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\Machine\Microsoft\Windows NT\SecEdit\
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	.
+	dr--r--r--                0 Sat Jan 25 15:49:11 2020	..
+	-r--r--r--              142 Sat Jan 25 15:49:11 2020	GptTmpl.inf
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{2619FB25-7519-4AEA-9C1E-348725EF2858}\Machine\Scripts\
+	dr--r--r--                0 Sat Jan 25 15:49:04 2020	.
+	dr--r--r--                0 Sat Jan 25 15:49:04 2020	..
+	dr--r--r--                0 Sat Jan 25 15:49:04 2020	Shutdown
+	dr--r--r--                0 Sat Jan 25 15:49:04 2020	Startup
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	-r--r--r--               22 Thu Jan 23 00:51:29 2020	GPT.INI
+	dr--r--r--                0 Thu Jan 23 00:51:29 2020	MACHINE
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	USER
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\
+	dr--r--r--                0 Thu Jan 23 00:51:29 2020	.
+	dr--r--r--                0 Thu Jan 23 00:51:29 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	Microsoft
+	-r--r--r--             2806 Thu Jan 23 00:51:29 2020	Registry.pol
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Microsoft\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	Windows NT
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Microsoft\Windows NT\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	SecEdit
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\MACHINE\Microsoft\Windows NT\SecEdit\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	-r--r--r--             1098 Thu Jan 23 00:44:49 2020	GptTmpl.inf
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{6AC1786C-016F-11D2-945F-00C04fB984F9}\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	-r--r--r--               22 Thu Jan 23 11:49:29 2020	GPT.INI
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	MACHINE
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	USER
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{6AC1786C-016F-11D2-945F-00C04fB984F9}\MACHINE\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	Microsoft
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{6AC1786C-016F-11D2-945F-00C04fB984F9}\MACHINE\Microsoft\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	Windows NT
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{6AC1786C-016F-11D2-945F-00C04fB984F9}\MACHINE\Microsoft\Windows NT\
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	.
+	dr--r--r--                0 Thu Jan 23 00:44:49 2020	..
+	dr--r--r--                0 Thu Jan 23 11:49:29 2020	SecEdit
+	.\\EGOTISTICAL-BANK.LOCAL\Policies\{6AC1786C-016F-11D2-945F-00C04fB984F9}\MACHINE\Microsoft\Windows NT\SecEdit\
+	dr--r--r--                0 Thu Jan 23 11:49:29 2020	.
+	dr--r--r--                0 Thu Jan 23 11:49:29 2020	..
+	-r--r--r--             4170 Thu Jan 23 11:49:29 2020	GptTmpl.inf
+
