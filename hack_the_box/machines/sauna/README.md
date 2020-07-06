@@ -119,3 +119,22 @@ cewl -d 2 -m 5 -w cewl.txt http://10.10.10.175/index.html
 
 Now I combined the cewl list with the user list that I made into a users.txt file.  Since port 88 is open, we know that this machine is running kerberos.  Therefore, we can try to brute-force kerberos authentication.  Kerberos pre-authentication failure is not logged in Active Directory with a normal Logon failure event (4625), but rather with specific logs to Kerberos pre-authentication failure (4771).  This will also verify if any usernames in our list are correct and if any of those accounts do not require pre-authentication, which can be useful to perform an [ASREPRoast attack](https://www.tarlogic.com/en/blog/how-to-attack-kerberos/).
 
+When  [pre-authentication is not enforced](https://social.technet.microsoft.com/wiki/contents/articles/23559.kerberos-pre-authentication-why-it-should-not-be-disabled.aspx), a malicious attacker can directly send a dummy request for authentication. The Kerberos Distribution Center will return an encrypted Ticket Granting Ticket containing a session  key encrypted with the user's password hash which the attacker can brute force it offline.
+
+To brute force Kerberos, we use [kerbrute](https://github.com/TarlogicSecurity/kerbrute).  We will use the file with the usernames that  and a passwords file (rockyou.txt).  Using that file let's try to use kerbrute to bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication: 
+```
+python /opt/kerbrute.py -domain EGOTISTICAL-BANK.LOCAL -dc-ip 10.10.10.175 -users users.txt -passwords /usr/share/wordlists/rockyou.txt -outputfile sauna_passwords.txt
+
+[*] Valid user => sauna
+[*] Valid user => FSmith [NOT PREAUTH]
+```
+Looks like user FSmith does not require pre-authentication.  Now we can send an AS_REQ request to the KDC on behalf of FSmith, and receive an [AS_REP message](https://www.tarlogic.com/en/blog/how-kerberos-works/). This last kind of message should contain a chunk of data encrypted with the original user key, derived from its password. Then, by using this message, the user password can be cracked offline.
+
+<br />
+
+### Exploitation
+
+
+
+
+
