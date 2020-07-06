@@ -5,7 +5,7 @@
 
 <br />
 
-### Enumeration
+## Enumeration
 
 <br />
 
@@ -136,7 +136,7 @@ Looks like user FSmith does not require pre-authentication.  Now we can send an 
 
 <br />
 
-### Exploitation
+## Exploitation
 
 <br />
 
@@ -222,7 +222,7 @@ PS C:\Users\FSmith\Documents> cat ..\Desktop\user.txt
 
 <br />
 
-### Privilege Escalation 
+## Privilege Escalation 
 
 <br />
 
