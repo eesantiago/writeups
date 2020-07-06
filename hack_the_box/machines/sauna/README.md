@@ -5,6 +5,10 @@
 
 <br />
 
+### Enumeration
+
+<br />
+
 Start off with a detailed nmap scan
 ```
 nmap -sC -sV -Pn -p- 10.10.10.175
