@@ -85,7 +85,7 @@ Still did not get anything worthwhile.  Lets take a look at what the webserver i
 ```
 http://10.10.10.175/
 ```
-![website]()
+![website](https://github.com/eesantiago/Writeups/blob/master/hack_the_box/machines/sauna/screenshots/website.png)
 
 
 <br />
@@ -94,7 +94,7 @@ Looks like a banking website.  I checked all of the links and found a page conta
 ```
 http://10.10.10.175/about.html
 ```
-![team]()
+![team](https://github.com/eesantiago/Writeups/blob/master/hack_the_box/machines/sauna/screenshots/team.png)
 
 <br />
 
