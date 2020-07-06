@@ -1,7 +1,4 @@
-# Sauna
-
-* **Level**: Easy
-* **Operating System**: Windows
+![sauna](https://github.com/eesantiago/Writeups/blob/master/hack_the_box/machines/sauna/screenshots/sauna.jpg)
 
 <br />
 
