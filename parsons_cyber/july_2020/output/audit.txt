@@ -1,0 +1,21 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Fri Jul 24 17:52:54 2020
+Invocation: foremost hidden2.tiff 
+Output directory: /home/kali/Writeups/parsons_cyber/july_2020/output
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: hidden2.tiff
+Start: Fri Jul 24 17:52:54 2020
+Length: 233 KB (238962 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+Finish: Fri Jul 24 17:52:54 2020
+
+0 FILES EXTRACTED
+	
+------------------------------------------------------------------
+
+Foremost finished at Fri Jul 24 17:52:54 2020

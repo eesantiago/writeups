@@ -1,0 +1,6 @@
+dns && (dns.flags.response == 0) && ! dns.response_in
+
+dns 1 
+
+
+# was not 8???

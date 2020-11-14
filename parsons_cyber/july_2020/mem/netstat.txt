@@ -1,0 +1,67 @@
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      388/sshd            
+tcp        0      0 0.0.0.0:10535           0.0.0.0:*               LISTEN      2875/bash           
+tcp6       0      0 :::22                   :::*                    LISTEN      388/sshd            
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           403/dhclient        
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   PID/Program name     Path
+unix  2      [ ACC ]     STREAM     LISTENING     9046     1/init               /run/systemd/fsck.progress
+unix  2      [ ]         DGRAM                    12175    430/systemd          /run/user/1000/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     12179    430/systemd          /run/user/1000/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     12184    430/systemd          /run/user/1000/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     12187    430/systemd          /run/user/1000/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     12189    430/systemd          /run/user/1000/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     12191    430/systemd          /run/user/1000/gnupg/S.gpg-agent.browser
+unix  3      [ ]         DGRAM                    8937     1/init               /run/systemd/notify
+unix  2      [ ]         DGRAM                    8939     1/init               /run/systemd/cgroups-agent
+unix  2      [ ACC ]     STREAM     LISTENING     8943     1/init               /run/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     10992    1/init               /var/run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    8948     1/init               /run/systemd/journal/syslog
+unix  2      [ ACC ]     STREAM     LISTENING     8952     1/init               /run/systemd/journal/stdout
+unix  7      [ ]         DGRAM                    8954     1/init               /run/systemd/journal/socket
+unix  2      [ ACC ]     SEQPACKET  LISTENING     8956     1/init               /run/udev/control
+unix  8      [ ]         DGRAM                    8958     1/init               /run/systemd/journal/dev-log
+unix  3      [ ]         STREAM     CONNECTED     11327    351/systemd-logind   
+unix  3      [ ]         DGRAM                    9793     196/systemd-udevd    
+unix  3      [ ]         DGRAM                    9794     196/systemd-udevd    
+unix  3      [ ]         STREAM     CONNECTED     11075    1/init               
+unix  3      [ ]         STREAM     CONNECTED     11347    356/dbus-daemon      /var/run/dbus/system_bus_socket
+unix  3      [ ]         DGRAM                    12177    430/systemd          
+unix  3      [ ]         STREAM     CONNECTED     11123    351/systemd-logind   
+unix  3      [ ]         STREAM     CONNECTED     9673     196/systemd-udevd    
+unix  3      [ ]         STREAM     CONNECTED     12143    430/systemd          
+unix  3      [ ]         STREAM     CONNECTED     11171    352/cron             
+unix  3      [ ]         DGRAM                    8942     1/init               
+unix  3      [ ]         DGRAM                    8941     1/init               
+unix  3      [ ]         STREAM     CONNECTED     11345    356/dbus-daemon      
+unix  2      [ ]         DGRAM                    11333    353/rsyslogd         
+unix  3      [ ]         STREAM     CONNECTED     11346    356/dbus-daemon      
+unix  3      [ ]         STREAM     CONNECTED     10590    1/init               /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     10589    277/systemd-timesyn  
+unix  3      [ ]         DGRAM                    10690    277/systemd-timesyn  
+unix  2      [ ]         DGRAM                    12164    430/systemd          
+unix  2      [ ]         DGRAM                    12058    386/login            
+unix  2      [ ]         DGRAM                    9285     173/systemd-journal  
+unix  3      [ ]         STREAM     CONNECTED     12144    1/init               /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM                    12178    430/systemd          
+unix  3      [ ]         STREAM     CONNECTED     11592    388/sshd             
+unix  3      [ ]         DGRAM                    10691    277/systemd-timesyn  
+unix  2      [ ]         DGRAM                    12219    443/su               
+unix  2      [ ]         DGRAM                    9338     1/init               
+unix  3      [ ]         STREAM     CONNECTED     11593    1/init               /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     11271    1/init               /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     9674     1/init               /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     11283    1/init               /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     11348    356/dbus-daemon      /var/run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     11267    356/dbus-daemon      
+unix  2      [ ]         DGRAM                    11292    351/systemd-logind   
+unix  3      [ ]         DGRAM                    10692    277/systemd-timesyn  
+unix  3      [ ]         STREAM     CONNECTED     11279    1/init               /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    9702     196/systemd-udevd    
+unix  3      [ ]         DGRAM                    10693    277/systemd-timesyn  
+unix  2      [ ]         DGRAM                    12404    469/su               
+unix  2      [ ]         DGRAM                    12301    450/login            
+unix  2      [ ]         DGRAM                    10917    403/dhclient         
+unix  2      [ ]         DGRAM                    12154    432/(sd-pam)         
+unix  2      [ ]         DGRAM                    10684    277/systemd-timesyn  

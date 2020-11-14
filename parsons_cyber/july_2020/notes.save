@@ -1,0 +1,35 @@
+dns && (dns.flags.response == 0) && ! dns.response_in
+
+dns 1 
+
+
+# was not 8???
+
+
+#mem 1
+
+/run/log/journal/e0ddc163a2ab432eb85ef0d8b3b8c137/system@e6f21ec0d2324d339d1d7cb5d2b7cddc-000000000000077b-0005ab13120e04df.journal
+
+tcp        0      0 0.0.0.0:10535           0.0.0.0:*               LISTEN      2875/bash
+
+bash      2875                 root  txt       REG                8,1    13376     290465 /usr/lib/bash
+
+# thats it wtf? 
+
+
+# processing data 1
+
+cat * | grep 'June 13' | awk '{print $3}' > /tmp/numbers.txt
+
+numsum /tmp/numbers.txt
+
+106099 but that is not right?
+
+awk 'BEGIN { sum=0 } { sum+=$1 } END {print sum }' /tmp/numbers.txt
+
+#same output 
+
+cat * | grep 'June 13' | cut -d ' ' -f3 > /tmp/total.txt
+
+# same output 
+
