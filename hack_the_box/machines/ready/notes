@@ -1,0 +1,53 @@
+########
+SCANNING 
+########
+
+nmap 10.10.10.220
+
+ 
+PORT     STATE SERVICE
+22/tcp   open  ssh
+5080/tcp open  onscreen
+
+nmap -sC -sV -Pn -p- 10.10.10.220
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+5080/tcp open  http    nginx
+| http-robots.txt: 53 disallowed entries (15 shown)
+| / /autocomplete/users /search /api /admin /profile 
+| /dashboard /projects/new /groups/new /groups/*/edit /users /help 
+|_/s/ /snippets/new /snippets/*/edit
+| http-title: Sign in \xC2\xB7 GitLab
+|_Requested resource was http://10.10.10.220:5080/users/sign_in
+|_http-trane-info: Problem with XML parsing of /evox/about
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+####
+HTTP
+###
+
+nikto -h 10.10.10.220
+
++ Server: nginx
++ Uncommon header 'x-request-id' found, with contents: 2bd20d32-37ff-4668-a4f0-ad36bcee5565
++ Uncommon header 'x-runtime' found, with contents: 0.011399
++ Root page / redirects to: http://10.10.10.220/users/sign_in
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Entry '/autocomplete/users/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ Entry '/search/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ Entry '/help/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ Entry '/users/sign_in/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ "robots.txt" contains 53 entries which should be manually viewed.
++ OSVDB-630: The web server may reveal its internal or real IP in the Location header via a request to / over HTTP/1.0. The value is "172.19.0.2".
++ /help/: Help directory should not be accessible
++ OSVDB-3092: /public/: This might be interesting...
++ OSVDB-3092: /search.vts: This might be interesting...
++ OSVDB-3092: /test/: This might be interesting...
++ Uncommon header 'x-gitlab-custom-error' found, with contents: 1
++ ERROR: Error limit (20) reached for host, giving up. Last error: opening stream: can't connect (timeout): Operation now in progress
++ Scan terminated:  20 error(s) and 13 item(s) reported on remote host
++ End Time:           2021-03-13 08:30:10 (GMT-5) (33316 seconds)
+---------------------------------------------------------------------
+
+curl 10.10.10.220.5080
