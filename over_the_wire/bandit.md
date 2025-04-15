@@ -15,6 +15,7 @@ cat /home/bandit2/spaces\ in\ this\ filename
 cat /home/bandit3/inhere/...Hiding-From-You
 ```
 #### Bandit Level 4 → Level 5
+Use `--` to escape the special character `-` and tell cat there are no more arguments
 ```
 # determine which file is ASCII the cat the file
 for f in *; do file -- "$f"; done
