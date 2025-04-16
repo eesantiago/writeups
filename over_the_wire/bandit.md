@@ -94,6 +94,15 @@ gunzip -d data8.bin.gz
 cat data8.bin
 ```
 #### Bandit Level 12 → Level 13
+Use the `tr` command to rotate the ASCII characters 13 positions:
 ```
-
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+#### Bandit Level 13 → Level 14
+```
+ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+```
+#### Bandit Level 14 → Level 15
+```
+nc 127.0.0.1 30000 < /etc/bandit_pass/bandit14
 ```
