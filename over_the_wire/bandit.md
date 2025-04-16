@@ -27,7 +27,73 @@ cat -- -file07
 find /home/bandit5/inhere -type f -size 1033c
 
 # verify it is human readable and not executeable:
-file /home/bandit5/inhere/maybehere/.file02
-ls -la /home/bandit5/inhere/maybehere/.file02
-cat /home/bandit5/inhere/maybehere/.file02
+file /home/bandit5/inhere/maybehere07/.file02
+ls -la /home/bandit5/inhere/maybehere07/.file02
+cat /home/bandit5/inhere/maybehere07/.file02
+```
+#### Bandit Level 6 → Level 7
+```
+find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+cat /var/lib/dpkg/info/badnit7.password
+```
+#### Bandit Level 7 → Level 8
+```
+grep millionth /home/bandit7/data.txt | awk '{print $2}'
+```
+#### Bandit Level 8 → Level 9
+```
+cat /home/bandit8/data.txt | sort | uniq -c
+```
+#### Bandit Level 9 → Level 10
+```
+ strings /home/bandit9/data.txt | grep ==
+```
+#### Bandit Level 10 → Level 11
+```
+base64 -d /home/bandit10/data.txt
+```
+#### Bandit Level 11 → Level 12
+Use the `tr` command to rotate the ASCII characters by 13 positions:
+```
+cat /home/bandit11/data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+#### Bandit Level 12 → Level 13
+Create a working directory:
+```
+mktemp -d
+cp data.txt <TMP_DIR>
+```
+convert it back into its original binary form
+```
+xxd -r data.txt data.gz
+```
+Continuouzly decompress the file based on the new `file` output.  Shortened here:
+```
+gunzip -c data.gz > data.bz
+bunzip2 -c data.bz > data.gz
+gunzip -c data.gz > data.tz
+
+tar -xvf data.tz
+file data5.bin
+cp data5.bin data5.bin.tz
+
+tar -xvf data5.bin.tz
+file data6.bin 
+cp data6.bin data6.bin.bz
+rm data6.bin
+
+bzip2 -d data6.bin.bz
+file data6.bin 
+cp data6.bin data6.bin.tz
+
+tar -xvf data6.bin.tz
+file data8.bin 
+cp data8.bin data8.bin.gz
+gunzip -d data8.bin.gz
+
+cat data8.bin
+```
+#### Bandit Level 12 → Level 13
+```
+
 ```
