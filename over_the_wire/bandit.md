@@ -21,3 +21,13 @@ Use `--` to escape the special character `-` and tell cat there are no more argu
 for f in *; do file -- "$f"; done
 cat -- -file07
 ```
+#### Bandit Level 5 → Level 6
+```
+# find the file that 1033 bytes:
+find /home/bandit5/inhere -type f -size 1033c
+
+# verify it is human readable and not executeable:
+file /home/bandit5/inhere/maybehere/.file02
+ls -la /home/bandit5/inhere/maybehere/.file02
+cat /home/bandit5/inhere/maybehere/.file02
+```
