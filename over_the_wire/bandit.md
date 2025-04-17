@@ -126,3 +126,23 @@ chmod 700 id_rsa_bandit17
 # ssh as bandit17
 ssh -i id_rsa_bandit17 bandit17@bandit.labs.overthewire.org -p 2220
 ```
+Bandit Level 17 → Level 18
+```
+diff passwords.old passwords.new
+```
+Bandit Level 18 → Level 19
+```
+ssh bandit18@bandit.labs.overthewire.org -p 2220 -t 'cat readme; bash -l'
+```
+Bandit Level 19 → Level 20
+```
+# find the suid binary in the home directory:
+find /home/bandit19 -perm -u=s -type f 2>/dev/null
+
+# grab the password
+./bandit20-do cat /etc/bandit_pass/bandit20
+```
+
+```
+0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO - bandit 20
+```
