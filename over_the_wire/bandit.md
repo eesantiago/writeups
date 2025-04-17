@@ -106,3 +106,23 @@ ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
 ```
 nc 127.0.0.1 30000 < /etc/bandit_pass/bandit14
 ```
+#### Bandit Level 15 → Level 16
+Use `ncat` to connect to the server using SSL/TLS encryption:
+```
+ncat -C --ssl 127.0.0.1 30001 < /etc/bandit_pass/bandit15
+```
+#### Bandit Level 16 → Level 17
+```
+# find out which ports in the range are open and speak SSL/TLS
+nmap -sT -p 31000-32000 127.0.0.1 --script ssl-enum-ciphers
+
+# submit the password
+ncat -C --ssl 127.0.0.1 31790 < /etc/bandit_pass/bandit16
+
+# copy the ssh key into a file
+vim id_rsa_bandit17
+chmod 700 id_rsa_bandit17
+
+# ssh as bandit17
+ssh -i id_rsa_bandit17 bandit17@bandit.labs.overthewire.org -p 2220
+```
