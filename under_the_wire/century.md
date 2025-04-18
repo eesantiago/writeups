@@ -11,11 +11,12 @@ century1
 $PSVersionTable | findstr "BuildVersion"
 ```
 #### Century 2 -> 3
+View the contents of Desktop:
 ```
-# view the contents of Desktop
 Get-Content
-
-# Find the cmdlet similar to wget
+```
+Find the cmdlet similar to wget:
+```
 Get-Alias wget
 Invoke-WebRequest
 ```
