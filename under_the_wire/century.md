@@ -6,3 +6,16 @@ ssh century1@century.underthewire.tech
 century1
 ```
 #### Century 1 -> 2
+```
+# Installed PowerShell Build Version
+$PSVersionTable | findstr "BuildVersion"
+```
+#### Century 2 -> 3
+```
+# view the contents of Desktop
+Get-Content
+
+# Find the cmdlet similar to wget
+Get-Alias wget
+Invoke-WebRequest
+```
